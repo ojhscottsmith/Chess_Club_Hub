@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Chess Club Hub</string>
+    <string name="app_title">The Chess Club Hub!</string>
+    <string name="home_page_announcement_title">New Announcement:</string>
+    <string name="home_page_event_title">Upcoming Events:</string>
 </resources>

@@ -30,30 +30,30 @@
             android:layout_height="80dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/titleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/app_title" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="93dp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/announcementBrief"
             android:layout_width="match_parent"
             android:layout_height="87dp"
-            android:text="Button" />
+            android:text="@string/home_page_announcement_title" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="43dp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/eventsBrief"
             android:layout_width="match_parent"
             android:layout_height="98dp"
-            android:text="Button" />
+            android:text="@string/home_page_event_title" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
