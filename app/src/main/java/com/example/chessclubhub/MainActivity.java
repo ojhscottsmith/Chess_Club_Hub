@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +19,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button announcementBrief;
     Button eventsBrief;
 
+    //Defining menu bar ourselves, to allow for more customization
+    Button homePage;
+    Button gamePage;
+    Button eventPage;
+    Button announcementPage;
+    Button loginPage;
+
     //For testing purposes
     final int DURATION = Toast.LENGTH_LONG;
 
@@ -35,48 +40,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         announcementBrief = findViewById(R.id.announcementBrief);
         eventsBrief = findViewById(R.id.eventsBrief);
 
+        homePage = findViewById(R.id.home_page);
+        gamePage = findViewById(R.id.game_page);
+        eventPage = findViewById(R.id.event_page);
+        announcementPage = findViewById(R.id.announcement_page);
+        loginPage = findViewById(R.id.login_page);
+
         announcementBrief.setOnClickListener(this);
         eventsBrief.setOnClickListener(this);
+
+        homePage.setOnClickListener(this);
+        gamePage.setOnClickListener(this);
+        eventPage.setOnClickListener(this);
+        announcementPage.setOnClickListener(this);
+        loginPage.setOnClickListener(this);
+
     }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menubar, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menubar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        //Upon selecting each icon in the menu bar,
-        //the color of the icon corresponding to the chosen menu changes.
-        //To stand out from the other pages.
-
-        switch(item.getItemId()){
-            case R.id.home_page:
-                componentCalled("Redirects to home page");
-                return true;
-
-            case R.id.game_page:
-                componentCalled("Redirects to game page");
-                return true;
-
-            case R.id.event_page:
-                componentCalled("Redirects to events page");
-                return true;
-
-            case R.id.announcement_page:
-                componentCalled("Redirects to announcements page");
-                return true;
-
-            case R.id.login_page:
-                componentCalled("Redirects to admin login page");
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//
+//        //Upon selecting each icon in the menu bar,
+//        //the color of the icon corresponding to the chosen menu changes.
+//        //To stand out from the other pages.
+//
+//        switch(item.getItemId()){
+//            case R.id.home_page:
+//                componentCalled("Redirects to home page");
+//                return true;
+//
+//            case R.id.game_page:
+//                componentCalled("Redirects to game page");
+//                return true;
+//
+//            case R.id.event_page:
+//                componentCalled("Redirects to events page");
+//                return true;
+//
+//            case R.id.announcement_page:
+//                componentCalled("Redirects to announcements page");
+//                return true;
+//
+//            case R.id.login_page:
+//                componentCalled("Redirects to admin login page");
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
 
 
@@ -92,6 +111,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.eventsBrief:
                 //redirect to the events list
                 componentCalled("Redirects to events list");
+                break;
+
+            case R.id.home_page:
+                componentCalled("Redirects to home page");
+                break;
+
+            case R.id.game_page:
+                componentCalled("Redirects to game page");
+                break;
+
+            case R.id.event_page:
+                componentCalled("Redirects to events page");
+                break;
+
+            case R.id.announcement_page:
+                componentCalled("Redirects to announcements page");
+                break;
+
+            case R.id.login_page:
+                componentCalled("Redirects to admin login page");
                 break;
         }
     }
