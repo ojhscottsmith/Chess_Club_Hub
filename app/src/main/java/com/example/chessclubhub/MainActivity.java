@@ -1,4 +1,4 @@
-package com.example.chessclubhub;
+package com.example.afinal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,11 +21,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button eventsBrief;
 
     //Defining menu bar ourselves, to allow for more customization
-    Button homePage;
-    Button gamePage;
-    Button eventPage;
-    Button announcementPage;
-    Button loginPage;
+    ImageButton homePage;
+    ImageButton gamePage;
+    ImageButton eventPage;
+    ImageButton announcementPage;
+    ImageButton loginPage;
 
     //For testing purposes
     final int DURATION = Toast.LENGTH_LONG;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //Binding components with view
-        titleView = findViewById(R.id.titleView);
+        //titleView = findViewById(R.id.titleView);
         announcementBrief = findViewById(R.id.announcementBrief);
         eventsBrief = findViewById(R.id.eventsBrief);
 
@@ -142,6 +143,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toast debugger = Toast.makeText(context,displayText,DURATION);
         debugger.show();
     }
-
-
 }
