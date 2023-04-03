@@ -1,4 +1,4 @@
-package com.example.chessclubhub;
+package com.example.afinal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
