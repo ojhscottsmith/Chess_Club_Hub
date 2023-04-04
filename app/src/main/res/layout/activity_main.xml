@@ -23,7 +23,7 @@
                 android:layout_width="83dp"
                 android:layout_height="83dp"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
                 android:background="@color/brown"
@@ -39,7 +39,7 @@
                 android:layout_width="83dp"
                 android:layout_height="83dp"
                 android:layout_toRightOf="@+id/home_page"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="25dp"
                 android:background="@color/brown"
                 android:src="@drawable/ic_calendar"
                 android:adjustViewBounds="true"
@@ -53,7 +53,7 @@
                 android:layout_width="83dp"
                 android:layout_height="83dp"
                 android:layout_toRightOf="@+id/event_page"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="25dp"
                 android:background="@color/brown"
                 android:src="@drawable/ic_game"
                 android:adjustViewBounds="true"
@@ -67,7 +67,7 @@
                 android:layout_width="83dp"
                 android:layout_height="83dp"
                 android:layout_toRightOf="@+id/game_page"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="25dp"
                 android:background="@color/brown"
                 android:src="@drawable/announcements"
                 android:adjustViewBounds="true"
@@ -81,7 +81,7 @@
                 android:layout_width="83dp"
                 android:layout_height="83dp"
                 android:layout_toRightOf="@+id/announcement_page"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/admin"
                 android:background="@color/brown"
                 android:adjustViewBounds="true"
@@ -142,5 +142,4 @@
                 android:layout_marginTop="450dp"
                 android:layout_marginLeft="90dp"/>
         </RelativeLayout>
-<!--    </LinearLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

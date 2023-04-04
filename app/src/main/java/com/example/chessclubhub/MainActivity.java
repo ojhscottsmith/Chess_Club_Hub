@@ -1,9 +1,10 @@
-package com.example.afinal;
+package com.example.chessclubhub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,11 +68,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        //Upon selecting each icon in the menu bar,
-//        //the color of the icon corresponding to the chosen menu changes.
-//        //To stand out from the other pages.
-//
+//        int id = item.getItemId();
+
+        //Upon selecting each icon in the menu bar,
+        //the color of the icon corresponding to the chosen menu changes.
+        //To stand out from the other pages.
+
 //        switch(item.getItemId()){
 //            case R.id.home_page:
 //                componentCalled("Redirects to home page");
@@ -86,8 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                return true;
 //
 //            case R.id.announcement_page:
-//                componentCalled("Redirects to announcements page");
-//                return true;
+//        if(id == R.id.announcementBrief){
+//            SendUserToAnnouncementsActivity();
+//        }
+//        componentCalled("Redirects to announcements page");
 //
 //            case R.id.login_page:
 //                componentCalled("Redirects to admin login page");
@@ -96,7 +100,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            default:
 //                return super.onOptionsItemSelected(item);
 //        }
+//        return super.onOptionsItemSelected(item);
 //    }
+    private void SendUserToAnnouncementsActivity() {
+        Intent mainIntent = new Intent(MainActivity.this, AnnouncementsActivity.class);
+        startActivity(mainIntent);
+    }
 
 
 
@@ -127,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.announcement_page:
+                SendUserToAnnouncementsActivity();
                 componentCalled("Redirects to announcements page");
                 break;
 

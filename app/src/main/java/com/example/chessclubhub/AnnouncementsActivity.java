@@ -1,4 +1,4 @@
-package com.example.afinal;
+package com.example.chessclubhub;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +8,19 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.afinal.databinding.ActivityAnnouncementsBinding;
+import com.example.chessclubhub.databinding.ActivityAnnouncementsBinding;
 
 public class AnnouncementsActivity extends AppCompatActivity {
+    Button postinfo;
+    Button postinfo2;
+    Button postinfo3;
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityAnnouncementsBinding binding;
@@ -24,6 +28,9 @@ public class AnnouncementsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        postinfo = (Button) findViewById(R.id.post_info);
+        postinfo2 = (Button) findViewById(R.id.post_info2);
+        postinfo3 = (Button) findViewById(R.id.post_info3);
 
         binding = ActivityAnnouncementsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

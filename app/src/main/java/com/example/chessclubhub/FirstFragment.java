@@ -1,4 +1,4 @@
-package com.example.afinal;
+package com.example.chessclubhub;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.afinal.databinding.FragmentFirstBinding;
+
+import com.example.chessclubhub.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
 

@@ -12,6 +12,22 @@
         android:theme="@style/Theme.ChessClubHub"
         tools:targetApi="31">
         <activity
+            android:name=".Post_Display"
+            android:exported="false" />
+        <activity
+            android:name=".AnnouncementActivity"
+            android:exported="false"
+            android:label="@string/title_activity_announcement"
+            android:theme="@style/Theme.ChessClubHub.NoActionBar" />
+        <activity
+            android:name=".PostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnnouncementsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_announcements"
+            android:theme="@style/Theme.ChessClubHub.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
