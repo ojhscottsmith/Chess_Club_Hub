@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,6 +19,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.chessclubhub.databinding.ActivityAnnouncementsBinding;
 
 public class AnnouncementsActivity extends AppCompatActivity {
+    ImageButton home;
     Button postinfo;
     Button postinfo2;
     Button postinfo3;
@@ -28,12 +30,19 @@ public class AnnouncementsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        postinfo = (Button) findViewById(R.id.post_info);
-        postinfo2 = (Button) findViewById(R.id.post_info2);
-        postinfo3 = (Button) findViewById(R.id.post_info3);
 
         binding = ActivityAnnouncementsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        postinfo = (Button) findViewById(R.id.post_info);
+        postinfo2 = (Button) findViewById(R.id.post_info2);
+        postinfo3 = (Button) findViewById(R.id.post_info3);
+        home = findViewById(R.id.home_page);
+        postinfo.setOnClickListener(v1 ->{
+            SendUserToPost_Display();
+        });
+        home.setOnClickListener(v2 ->{
+            SendUserToMainActivity();
+        });
 
         setSupportActionBar(binding.toolbar);
 
@@ -45,10 +54,18 @@ public class AnnouncementsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SendUserToPostActivity();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
+    }
+
+    private void SendUserToMainActivity() {
+        Intent mainIntent = new Intent(AnnouncementsActivity.this, MainActivity.class);
+        startActivity(mainIntent);
+    }
+
+    private void SendUserToPost_Display() {
+        Intent mainIntent = new Intent(AnnouncementsActivity.this, Post_Display.class);
+        startActivity(mainIntent);
     }
 
     private void SendUserToPostActivity() {
