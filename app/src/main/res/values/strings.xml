@@ -5,6 +5,7 @@
     <string name="home_page_event_title">Upcoming Events:</string>
     <string name="home_page"></string>
     <string name="title_activity_announcements">AnnouncementsActivity</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -19,4 +20,8 @@
     <string name="post_info">04/8/23 (5:30pm) -Join me and some friends for chess in VLB</string>
     <string name="post_info2">04/10/23 (10:00am) -We are having a chess tournament in South lounge anyone is welcome</string>
     <string name="post_info3">05/01/23 (12:00pm) -Chess in Lesher lounge, be there or be square</string>
+
+    <string name="announcement_title_edit_text">Please type the Announcement title here</string>
+    <string name="announcement_author_edit_text">Please write your full name here</string>
+    <string name="announcement_content_edit_text">Please type the Announcement content here</string>
 </resources>
