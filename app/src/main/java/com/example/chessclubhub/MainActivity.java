@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
+
     //Declare needed components
     TextView titleView;
     Button announcementBrief;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton announcementPage;
     ImageButton loginPage;
 
+    //For briefs
+    String lastAnnouncementTitle;
+
     //For testing purposes
     final int DURATION = Toast.LENGTH_LONG;
 
@@ -36,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Announcement.AnnouncementList.add(new Announcement("04/08/22","17:30","Chess in VLB","Bruce Wayne","Join me and some friends for Chess in VLB"));
+        Announcement.AnnouncementList.add(new Announcement("05/01/22","12:00","Chess in Lesher Lounge","Elizabeth Carol","Chess in Lesher Lounge, be there or be square"));
+        Announcement.AnnouncementList.add(new Announcement("04/10/22","10:00","South Lounge Tournament","Sucy Timberlake","We are having a Chess Tournament in South Lounge. Anyone is welcome!"));
 
         //Binding components with view
         //titleView = findViewById(R.id.titleView);
@@ -49,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loginPage = findViewById(R.id.login_page);
 
         announcementBrief.setOnClickListener(this);
+        lastAnnouncementTitle = Announcement.AnnouncementList.get(Announcement.AnnouncementList.size()-1).getTitle();
+        announcementBrief.setText(getString(R.string.home_page_announcement_title) + "\n" + lastAnnouncementTitle);
         eventsBrief.setOnClickListener(this);
 
         homePage.setOnClickListener(this);
@@ -56,10 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         eventPage.setOnClickListener(this);
         announcementPage.setOnClickListener(this);
         loginPage.setOnClickListener(this);
-
-        Announcement.AnnouncementList.add(new Announcement("04/08/22","17:30","Chess in VLB","Bruce Wayne","Join me and some friends for Chess in VLB"));
-        Announcement.AnnouncementList.add(new Announcement("05/01/22","12:00","Chess in Lesher Lounge","Elizabeth Carol","Chess in Lesher Lounge, be there or be square"));
-        Announcement.AnnouncementList.add(new Announcement("04/10/22","10:00","South Lounge Tournament","Sucy Timberlake","We are having a Chess Tournament in South Lounge. Anyone is welcome!"));
 
     }
 //
@@ -119,7 +126,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.announcementBrief:
                 //Redirect to the newest announcement
+                Intent announcementBriefIntent = new Intent(MainActivity.this,Post_Display.class);
+                announcementBriefIntent.putExtra(DISPLAY_ANNOUNCEMENT,Announcement.AnnouncementList.size()-1);
                 componentCalled("Redirects to most recent announcement");
+                startActivity(announcementBriefIntent);
                 break;
 
             case R.id.eventsBrief:
