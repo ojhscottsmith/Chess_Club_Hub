@@ -5,141 +5,129 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/ic_cch"
     >
 
 
-        <RelativeLayout
-            android:layout_width="409dp"
-            android:layout_height="729dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_title"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.163" />
 
-            <ImageButton
-                android:id="@+id/home_page"
-                android:layout_width="83dp"
-                android:layout_height="83dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:adjustViewBounds="true"
-                android:background="@color/brown"
-                android:contentDescription="Home page"
-                android:padding="3dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/negative_home"
-                app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/login_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/brown"
+        android:contentDescription="Admin login page"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/admin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/event_page"
-                android:contentDescription="Event page"
-                android:layout_width="83dp"
-                android:layout_height="83dp"
-                android:layout_toRightOf="@+id/home_page"
-                android:layout_marginTop="25dp"
-                android:background="@color/brown"
-                android:src="@drawable/ic_calendar"
-                android:adjustViewBounds="true"
-                android:padding="15dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/home_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/brown"
+        android:contentDescription="Home page"
+        android:padding="3dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/negative_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/game_page"
-                android:contentDescription="Game page"
-                android:layout_width="83dp"
-                android:layout_height="83dp"
-                android:layout_toRightOf="@+id/event_page"
-                android:layout_marginTop="25dp"
-                android:background="@color/brown"
-                android:src="@drawable/ic_game"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/event_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/brown"
+        android:contentDescription="Event page"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/announcement_page"
-                android:contentDescription="Announcement page"
-                android:layout_width="83dp"
-                android:layout_height="83dp"
-                android:layout_toRightOf="@+id/game_page"
-                android:layout_marginTop="25dp"
-                android:background="@color/brown"
-                android:src="@drawable/announcements"
-                android:adjustViewBounds="true"
-                android:padding="15dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/announcement_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/brown"
+        android:contentDescription="Announcement page"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/announcements"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/login_page"
-                android:contentDescription="Admin login page"
-                android:layout_width="83dp"
-                android:layout_height="83dp"
-                android:layout_toRightOf="@+id/announcement_page"
-                android:layout_marginTop="25dp"
-                android:src="@drawable/admin"
-                android:background="@color/brown"
-                android:adjustViewBounds="true"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/game_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/brown"
+        android:contentDescription="Game page"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_game"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/eventsBrief"
+        android:layout_width="204dp"
+        android:layout_height="93dp"
+        android:backgroundTint="@color/brown"
+        android:text="@string/home_page_event_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.921" />
 
+    <Button
+        android:id="@+id/announcementBrief"
+        android:layout_width="wrap_content"
+        android:layout_height="87dp"
+        android:backgroundTint="@color/brown"
+        android:text="@string/home_page_announcement_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.729" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="63dp" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="265dp"
+        android:layout_height="265dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.409"
+        app:srcCompat="@drawable/cch_icon" />
 
-<!--            <Button-->
-<!--                android:id="@+id/button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="replace with ImageView"-->
-<!--                android:backgroundTint="@color/brown"-->
-<!--                android:layout_marginTop="200dp"-->
-<!--                android:layout_marginLeft="90dp"-->
-<!--                />-->
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="80dp" />
-
-<!--            <TextView-->
-<!--                android:id="@+id/titleView"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/app_title" />-->
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="93dp" />
-
-            <Button
-                android:id="@+id/announcementBrief"
-                android:layout_width="wrap_content"
-                android:layout_height="87dp"
-                android:text="@string/home_page_announcement_title"
-                android:backgroundTint="@color/brown"
-                android:layout_marginTop="300dp"
-                android:layout_marginLeft="90dp"/>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="43dp" />
-
-            <Button
-                android:id="@+id/eventsBrief"
-                android:layout_width="204dp"
-                android:layout_height="93dp"
-                android:layout_marginLeft="90dp"
-                android:layout_marginTop="450dp"
-                android:backgroundTint="@color/brown"
-                android:text="@string/home_page_event_title" />
-        </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
