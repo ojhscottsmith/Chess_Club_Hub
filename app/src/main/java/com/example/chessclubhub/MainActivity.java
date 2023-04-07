@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Announcement.AnnouncementList.add(new Announcement("04/08/22","17:30","Chess in VLB","Bruce Wayne","Join me and some friends for Chess in VLB"));
-        Announcement.AnnouncementList.add(new Announcement("05/01/22","12:00","Chess in Lesher Lounge","Elizabeth Carol","Chess in Lesher Lounge, be there or be square"));
-        Announcement.AnnouncementList.add(new Announcement("04/10/22","10:00","South Lounge Tournament","Sucy Timberlake","We are having a Chess Tournament in South Lounge. Anyone is welcome!"));
+        if(Announcement.AnnouncementList.size()==0) {
+            Announcement.AnnouncementList.add(new Announcement("04/08/22", "17:30", "Chess in VLB", "Bruce Wayne", "Join me and some friends for Chess in VLB"));
+            Announcement.AnnouncementList.add(new Announcement("05/01/22", "12:00", "Chess in Lesher Lounge", "Elizabeth Carol", "Chess in Lesher Lounge, be there or be square"));
+            Announcement.AnnouncementList.add(new Announcement("04/10/22", "10:00", "South Lounge Tournament", "Sucy Timberlake", "We are having a Chess Tournament in South Lounge. Anyone is welcome!"));
+        }
 
         //Binding components with view
         //titleView = findViewById(R.id.titleView);
