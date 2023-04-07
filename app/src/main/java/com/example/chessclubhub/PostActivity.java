@@ -50,7 +50,7 @@ public class PostActivity extends AppCompatActivity {
 //    }
 
     private void postAnnouncementEvent() {
-        String currDate = new SimpleDateFormat("MM-dd-yyyy").format(new Date());
+        String currDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
         String currTime = new SimpleDateFormat("HH:mm").format(new Date());
         String title = announcement_title_edit.getText().toString();
         String author = announcement_author_edit.getText().toString();
