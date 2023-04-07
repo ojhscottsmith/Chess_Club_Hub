@@ -10,22 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <com.google.android.material.appbar.AppBarLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:theme="@style/Theme.ChessClubHub.AppBarOverlay"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
+        <!--        <com.google.android.material.appbar.AppBarLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:theme="@style/Theme.ChessClubHub.AppBarOverlay"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
 
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:id="@+id/toolbar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                android:background="?attr/colorPrimary"-->
-<!--                app:popupTheme="@style/Theme.ChessClubHub.PopupOverlay" />-->
+        <!--            <androidx.appcompat.widget.Toolbar-->
+        <!--                android:id="@+id/toolbar"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="?attr/actionBarSize"-->
+        <!--                android:background="?attr/colorPrimary"-->
+        <!--                app:popupTheme="@style/Theme.ChessClubHub.PopupOverlay" />-->
 
-<!--        </com.google.android.material.appbar.AppBarLayout>-->
+        <!--        </com.google.android.material.appbar.AppBarLayout>-->
 
         <ImageButton
             android:id="@+id/login_page"
@@ -127,20 +127,27 @@
             </LinearLayout>
         </ScrollView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/chess"
+            android:contentDescription="Make an announcement"
+            android:scaleType="fitCenter"
+            android:src="@drawable/add"
+            app:fabCustomSize="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.891"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.953"
+            app:maxImageSize="35dp" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:contentDescription="Make an announcement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
-        android:layout_marginStart="330dp"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        app:fabSize="normal"
-        android:backgroundTint="@color/chess"
-        />
-<!--        android:layout_marginEnd="@dimen/fab_margin"-->
+    <!--        android:layout_marginEnd="@dimen/fab_margin"-->
 <!--        android:layout_marginBottom="16dp"-->
 
 
