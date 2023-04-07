@@ -6,21 +6,126 @@
     android:layout_height="wrap_content"
     tools:context=".AnnouncementsActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.ChessClubHub.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.ChessClubHub.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.ChessClubHub.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/Theme.ChessClubHub.PopupOverlay" />
 
-    <include layout="@layout/content_announcements" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageButton
+            android:id="@+id/login_page"
+            android:layout_width="83dp"
+            android:layout_height="83dp"
+            android:layout_marginStart="328dp"
+            android:layout_marginTop="52dp"
+            android:adjustViewBounds="true"
+            android:background="@color/brown"
+            android:contentDescription="Admin login page"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/admin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/announcement_page"
+            android:layout_width="83dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="80dp"
+            android:adjustViewBounds="true"
+            android:background="@color/brown"
+            android:contentDescription="Announcement page"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/announcements"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/game_page"
+            android:layout_width="83dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="248dp"
+            android:adjustViewBounds="true"
+            android:background="@color/brown"
+            android:contentDescription="Game page"
+            android:padding="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_game"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/event_page"
+            android:layout_width="83dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="52dp"
+            android:adjustViewBounds="true"
+            android:background="@color/brown"
+            android:contentDescription="Event page"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/home_page"
+            android:layout_width="83dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="332dp"
+            android:adjustViewBounds="true"
+            android:background="@color/brown"
+            android:contentDescription="Home page"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="413dp"
+            android:layout_height="380dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.632">
+
+            <LinearLayout
+                android:id="@+id/buttonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/content_announcements" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -35,135 +140,5 @@
 <!--        android:layout_marginEnd="@dimen/fab_margin"-->
 <!--        android:layout_marginBottom="16dp"-->
 
-
-    <RelativeLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/home_page"
-            android:contentDescription="Home page"
-            android:layout_width="83dp"
-            android:layout_height="83dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="55dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:background="@color/brown"
-            android:src="@drawable/ic_home"
-            android:adjustViewBounds="true"
-            android:padding="3dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/event_page"
-            android:contentDescription="Event page"
-            android:layout_width="83dp"
-            android:layout_height="83dp"
-            android:layout_toRightOf="@+id/home_page"
-            android:layout_marginTop="55dp"
-            android:background="@color/brown"
-            android:src="@drawable/ic_calendar"
-            android:adjustViewBounds="true"
-            android:padding="15dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/game_page"
-            android:contentDescription="Game page"
-            android:layout_width="83dp"
-            android:layout_height="83dp"
-            android:layout_toRightOf="@+id/event_page"
-            android:layout_marginTop="55dp"
-            android:background="@color/brown"
-            android:src="@drawable/ic_game"
-            android:adjustViewBounds="true"
-            android:padding="20dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/announcement_page"
-            android:contentDescription="Announcement page"
-            android:layout_width="83dp"
-            android:layout_height="83dp"
-            android:layout_toRightOf="@+id/game_page"
-            android:layout_marginTop="55dp"
-            android:background="@color/brown"
-            android:src="@drawable/announcements"
-            android:adjustViewBounds="true"
-            android:padding="15dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/login_page"
-            android:contentDescription="Admin login page"
-            android:layout_width="83dp"
-            android:layout_height="83dp"
-            android:layout_toRightOf="@+id/announcement_page"
-            android:layout_marginTop="55dp"
-            android:src="@drawable/admin"
-            android:background="@color/brown"
-            android:adjustViewBounds="true"
-            android:padding="10dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/post_info"
-                android:text="@string/post_info"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginTop="200dp"
-                android:padding="3dp"
-                android:textSize="14sp">
-
-            </Button>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/post_info2"
-                android:text="@string/post_info2"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginTop="50dp"
-                android:padding="3dp"
-                android:textSize="14sp">
-
-            </Button>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/post_info3"
-                android:text="@string/post_info3"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginTop="50dp"
-                android:padding="3dp"
-                android:textSize="14sp">
-
-            </Button>
-        </LinearLayout>
-
-    </RelativeLayout>
 
 </RelativeLayout>

@@ -26,79 +26,79 @@
             
         </Button>
 
-        <Button
-            android:id="@+id/annoucementTitleView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="10pt"
+        <LinearLayout
+            android:layout_width="413dp"
+            android:layout_height="468dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.12"
-            android:clickable="false"
-            android:backgroundTint="@color/brown" />
+            app:layout_constraintVertical_bias="0.171">
 
-        <Button
-            android:id="@+id/announcementDateView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="10pt"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.198"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.258"
-            android:clickable="false"
-            android:backgroundTint="@color/brown"/>
+            <Button
+                android:id="@+id/announcementTitleView"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/brown"
+                android:clickable="false"
+                android:textSize="50pt" />
 
-        <Button
-            android:id="@+id/announcementTimeView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="10pt"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.847"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.258"
-            android:clickable="false"
-            android:backgroundTint="@color/brown" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="49dp" />
 
-        <Button
-            android:id="@+id/announcementPosterView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="10pt"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.37"
-            android:clickable="false"
-            android:backgroundTint="@color/brown"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="73dp"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/announcementContentView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="10pt"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.612"
-            android:clickable="false"
-            android:backgroundTint="@color/brown"/>
+                <Button
+                    android:id="@+id/announcementDateView"
+                    android:layout_width="159dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/brown"
+                    android:clickable="false"
+                    android:textSize="50pt" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/announcementTimeView"
+                    android:layout_width="155dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/brown"
+                    android:clickable="false"
+                    android:textSize="50pt" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="49dp" />
+
+            <Button
+                android:id="@+id/announcementAuthorView"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:backgroundTint="@color/brown"
+                android:clickable="false"
+                android:textSize="50pt" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="49dp" />
+
+            <Button
+                android:id="@+id/announcementContentView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/brown"
+                android:clickable="false"
+                android:textSize="50pt" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
