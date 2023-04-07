@@ -46,7 +46,8 @@ public class AnnouncementsActivity extends AppCompatActivity {
             tester.setId(i);
             tester.setWidth(buttonLayout.getWidth());
             tester.setText(Announcement.AnnouncementList.get(i).getTitle());
-            tester.setBackgroundColor(getColor(R.color.brown));
+            tester.setBackgroundColor(getColor(R.color.chess));
+            tester.setTextColor(getColor(R.color.white));
             tester.setOnClickListener(v1 -> {
                 displayId = tester.getId();
                 SendUserToPost_Display();

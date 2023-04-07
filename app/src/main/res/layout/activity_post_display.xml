@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.903"
             android:text="@string/back_button"
-            android:backgroundTint="@color/brown">
+            android:backgroundTint="@color/chess">
             
         </Button>
 
@@ -39,7 +39,7 @@
                 android:id="@+id/announcementTitleView"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/brown"
+                android:backgroundTint="@color/chess"
                 android:clickable="false"
                 android:textSize="50pt" />
 
@@ -56,7 +56,7 @@
                     android:id="@+id/announcementDateView"
                     android:layout_width="159dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/brown"
+                    android:backgroundTint="@color/chess"
                     android:clickable="false"
                     android:textSize="50pt" />
 
@@ -69,7 +69,7 @@
                     android:id="@+id/announcementTimeView"
                     android:layout_width="155dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/brown"
+                    android:backgroundTint="@color/chess"
                     android:clickable="false"
                     android:textSize="50pt" />
 
@@ -83,7 +83,7 @@
                 android:id="@+id/announcementAuthorView"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
-                android:backgroundTint="@color/brown"
+                android:backgroundTint="@color/chess"
                 android:clickable="false"
                 android:textSize="50pt" />
 
@@ -95,7 +95,7 @@
                 android:id="@+id/announcementContentView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/brown"
+                android:backgroundTint="@color/chess"
                 android:clickable="false"
                 android:textSize="50pt" />
         </LinearLayout>
