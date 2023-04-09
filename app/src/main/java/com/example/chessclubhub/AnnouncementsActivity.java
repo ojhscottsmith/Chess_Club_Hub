@@ -2,33 +2,31 @@ package com.example.chessclubhub;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Space;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.example.chessclubhub.databinding.ActivityAnnouncementsBinding;
 
+//Controller class for the Announcements page
+//Defines logic for the components defined in activity_announcements.xml
 public class AnnouncementsActivity extends AppCompatActivity {
+
+    //Declaring the interactive components
     ImageButton home;
-
-    public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
-
-    public static int displayId = 0;
-
     LinearLayout buttonLayout;
 
+    //Used when displaying a single announcement
+    public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
+    public static int displayId = 0;
+
+    //Binding purposes
     private AppBarConfiguration appBarConfiguration;
     private ActivityAnnouncementsBinding binding;
 
@@ -36,11 +34,14 @@ public class AnnouncementsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Bind the components
         binding = ActivityAnnouncementsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         buttonLayout = (LinearLayout) findViewById(R.id.buttonLayout);
 
+        //Add announcements to Scroll View
+        //When one is clicked, directs user to a more detailed page for the announcement
         for(int i = 0; i < Announcement.AnnouncementList.size();i++){
             Button tester = new Button(this);
             tester.setId(i);
@@ -59,32 +60,14 @@ public class AnnouncementsActivity extends AppCompatActivity {
 
         }
 
-//        postinfo = (Button) findViewById(R.id.post_info);
-//        postinfo2 = (Button) findViewById(R.id.post_info2);
-//        postinfo3 = (Button) findViewById(R.id.post_info3);
-//
-//
-//        Button tester = new Button(this);
-//        tester.setWidth(buttonLayout.getWidth());
-//        tester.setText("This is a test!\n");
-//        buttonLayout.addView(tester);
-
+        //Setting logic for menu-bar components
         home = findViewById(R.id.home_page);
-
-//        postinfo.setOnClickListener(v1 ->{
-//            SendUserToPost_Display();
-//        });
 
         home.setOnClickListener(v2 ->{
             SendUserToMainActivity();
         });
 
-//        setSupportActionBar(binding.toolbar);
-
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_announcements);
-//        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
+        //Logic for Floating Action Button (adding a new announcement)
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,17 +76,20 @@ public class AnnouncementsActivity extends AppCompatActivity {
         });
     }
 
+    //Event that directs user back to home page
     private void SendUserToMainActivity() {
         Intent mainIntent = new Intent(AnnouncementsActivity.this, MainActivity.class);
         startActivity(mainIntent);
     }
 
+    //Event that directs user to a more detailed view of a single announcement
     private void SendUserToPost_Display() {
         Intent mainIntent = new Intent(AnnouncementsActivity.this, Post_Display.class);
         mainIntent.putExtra(DISPLAY_ANNOUNCEMENT,displayId);
         startActivity(mainIntent);
     }
 
+    //Event that directs user to a view where they can post their own activity
     private void SendUserToPostActivity() {
         Intent addNewPostIntent = new Intent(AnnouncementsActivity.this, PostActivity.class);
         startActivity(addNewPostIntent);

@@ -1,10 +1,8 @@
 package com.example.chessclubhub;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
@@ -38,16 +36,6 @@ public class PostActivity extends AppCompatActivity {
 
 
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if(id == R.id.back_button){
-//            SendUserToAnnouncementsActivity();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private void postAnnouncementEvent() {
         String currDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());

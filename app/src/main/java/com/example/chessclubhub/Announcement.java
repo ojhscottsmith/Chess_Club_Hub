@@ -2,24 +2,32 @@ package com.example.chessclubhub;
 
 import java.util.*;
 
+//The announcement class, which defines the structure of a Chess Club announcement.
+//Contains the following attributes:
+// * String date: the date the announcement was posted
+// * String time: the time of day the announcement was posted (digital format)
+// * String title: the title of the announcement
+// * String author: the full name of the person who posted the announcement
+// * String content: description of the announcement itself
 public class Announcement {
 
+    //Declaring the object fields
     private String date, time, title, author, content;
 
+    //List object to store multiple Announcement objects
     static public ArrayList<Announcement> AnnouncementList = new ArrayList<>();
 
+    //Constructors
     public Announcement(){}
-
     public Announcement(String date, String time, String title, String author, String content){
-
         this.date = date;
         this.time = time;
         this.title = title;
         this.author = author;
         this.content = content;
-
     }
 
+    //Accessors and mutators
     public String getDate() {
         return date;
     }
@@ -58,11 +66,6 @@ public class Announcement {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public void addAnnouncement(String date, String time, String title, String author, String content){
-        Announcement newAnnouncement = new Announcement(date,time,title,author,content);
-        AnnouncementList.add(newAnnouncement);
     }
 
 }

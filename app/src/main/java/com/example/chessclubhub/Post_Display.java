@@ -1,7 +1,6 @@
 package com.example.chessclubhub;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -23,7 +22,6 @@ public class Post_Display extends AppCompatActivity {
         back.setOnClickListener(v1 ->{
             SendUserToAnnouncementsActivity();
         });
-
 
         Intent intent = getIntent();
         int announcementId = intent.getIntExtra(DISPLAY_ANNOUNCEMENT,0);

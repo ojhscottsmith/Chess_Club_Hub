@@ -10,23 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--        <com.google.android.material.appbar.AppBarLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:theme="@style/Theme.ChessClubHub.AppBarOverlay"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent">-->
-
-        <!--            <androidx.appcompat.widget.Toolbar-->
-        <!--                android:id="@+id/toolbar"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="?attr/actionBarSize"-->
-        <!--                android:background="?attr/colorPrimary"-->
-        <!--                app:popupTheme="@style/Theme.ChessClubHub.PopupOverlay" />-->
-
-        <!--        </com.google.android.material.appbar.AppBarLayout>-->
-
         <ImageButton
             android:id="@+id/login_page"
             android:layout_width="83dp"
@@ -146,9 +129,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--        android:layout_marginEnd="@dimen/fab_margin"-->
-<!--        android:layout_marginBottom="16dp"-->
 
 
 </RelativeLayout>
