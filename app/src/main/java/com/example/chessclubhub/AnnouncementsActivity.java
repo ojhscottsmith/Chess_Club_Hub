@@ -20,6 +20,7 @@ public class AnnouncementsActivity extends AppCompatActivity {
 
     //Declaring the interactive components
     ImageButton home;
+    ImageButton events;
     LinearLayout buttonLayout;
 
     //Used when displaying a single announcement
@@ -67,6 +68,11 @@ public class AnnouncementsActivity extends AppCompatActivity {
             SendUserToMainActivity();
         });
 
+        events = (ImageButton) findViewById(R.id.event_page);
+        events.setOnClickListener(v3 -> {
+            SendUserToEventsActivity();
+        });
+
         //Logic for Floating Action Button (adding a new announcement)
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +99,11 @@ public class AnnouncementsActivity extends AppCompatActivity {
     private void SendUserToPostActivity() {
         Intent addNewPostIntent = new Intent(AnnouncementsActivity.this, PostActivity.class);
         startActivity(addNewPostIntent);
+    }
+
+    private void SendUserToEventsActivity(){
+        Intent eventIntent = new Intent(this, EventsActivity.class);
+        startActivity(eventIntent);
     }
 
     @Override

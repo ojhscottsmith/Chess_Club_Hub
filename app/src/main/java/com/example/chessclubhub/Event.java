@@ -50,4 +50,9 @@ public class Event {
         this.content = content;
     }
 
+    @Override
+    public String toString() {
+        return date + " – " + title;
+    }
+
 }

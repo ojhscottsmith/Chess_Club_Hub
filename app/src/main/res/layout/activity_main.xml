@@ -97,8 +97,8 @@
 
     <Button
         android:id="@+id/eventsBrief"
-        android:layout_width="204dp"
-        android:layout_height="93dp"
+        android:layout_width="295dp"
+        android:layout_height="114dp"
         android:backgroundTint="@color/chess"
         android:text="@string/home_page_event_title"
         app:layout_constraintBottom_toBottomOf="parent"

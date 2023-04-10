@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //For briefs
     String lastAnnouncementTitle;
+    String newEvents;
 
     //For testing purposes
     final int DURATION = Toast.LENGTH_LONG;
@@ -45,6 +46,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Announcement.AnnouncementList.add(new Announcement("04/10/2022", "10:00", "South Lounge Tournament", "Sucy Timberlake", "We are having a Chess Tournament in South Lounge. Anyone is welcome!"));
         }
 
+        if(Event.EventList.size()==0) {
+            Event.EventList.add(new Event("02/18/2023", "Standing Stone Tournament", "The monthly SSCC Tournament! Join us in the Cafe to play tournament-style chess games, in the round robin format, and get a chance to win $30 in store credit!"));
+            Event.EventList.add(new Event("03/01/2023", "Charity Chess Night", "In this month's campus tournament, along with the normal prizes given for first, second, and third, we will also give all funds from the ticket sales to UNICEF. Join the tournament for a cause!"));
+            Event.EventList.add(new Event("06/27/2023", "June Blitz", "A fun one: the Chess Alliance will be going to Pittsburgh for a USCF-sponsored tournament! Sign up here: https://rb.gy/tdmnp"));
+        }
+
         //Binding components with view
         announcementBrief = findViewById(R.id.announcementBrief);
         eventsBrief = findViewById(R.id.eventsBrief);
@@ -58,7 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         announcementBrief.setOnClickListener(this);
         lastAnnouncementTitle = Announcement.AnnouncementList.get(Announcement.AnnouncementList.size()-1).getTitle();
         announcementBrief.setText(getString(R.string.home_page_announcement_title) + "\n" + lastAnnouncementTitle);
+        newEvents = Event.EventList.get(Event.EventList.size()-1).toString() + "\n" + Event.EventList.get(Event.EventList.size()-2).toString();
         eventsBrief.setOnClickListener(this);
+        eventsBrief.setText(getString(R.string.home_page_event_title) + "\n" + newEvents);
 
         homePage.setOnClickListener(this);
         gamePage.setOnClickListener(this);
@@ -71,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void SendUserToAnnouncementsActivity() {
         Intent mainIntent = new Intent(MainActivity.this, AnnouncementsActivity.class);
         startActivity(mainIntent);
+    }
+
+    private void SendUserToEventsActivity(){
+        Intent eventBriefIntent = new Intent(this, EventsActivity.class);
+        startActivity(eventBriefIntent);
     }
 
 
@@ -89,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.eventsBrief:
                 //redirect to the events list
+                Intent eventBriefIntent = new Intent(this, EventsActivity.class);
+                startActivity(eventBriefIntent);
                 componentCalled("Redirects to events list");
                 break;
 
@@ -102,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.event_page:
                 componentCalled("Redirects to events page");
+                SendUserToEventsActivity();
                 break;
 
             case R.id.announcement_page:
