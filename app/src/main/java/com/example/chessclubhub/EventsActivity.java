@@ -29,7 +29,7 @@ public class EventsActivity extends AppCompatActivity {
 
         //Add announcements to Scroll View
         //When one is clicked, directs user to a more detailed page for the announcement
-        for(int i = 0; i < Announcement.AnnouncementList.size();i++){
+        for(int i = 0; i < Event.EventList.size();i++){
             Button tester = new Button(this);
             tester.setId(i);
             tester.setWidth(buttonLayout.getWidth());
