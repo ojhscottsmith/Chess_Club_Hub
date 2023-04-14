@@ -46,34 +46,30 @@ dependencies {
 }
 
 
-buildscript {
-  repositories {
-    // Make sure that you have the following two repositories
-    google()  // Google's Maven repository
+plugins {
+  id 'com.android.application'
 content_copy
 
-    mavenCentral()  // Maven Central repository
+  // Add the Google services Gradle plugin
+  id 'com.google.gms.google-services'
 content_copy
 
-  }
-  dependencies {
-    ...
-    // Add the dependency for the Google services Gradle plugin
-    classpath 'com.google.gms:google-services:4.3.15'
-content_copy
-
-  }
-}
-
-allprojects {
   ...
-  repositories {
-    // Make sure that you have the following two repositories
-    google()  // Google's Maven repository
-content_copy
-
-    mavenCentral()  // Maven Central repository
-content_copy
-
-  }
 }
+
+dependencies {
+  // Import the Firebase BoM
+  implementation platform('com.google.firebase:firebase-bom:31.3.0')
+content_copy
+
+
+  // TODO: Add the dependencies for Firebase products you want to use
+  // When using the BoM, don't specify versions in Firebase dependencies
+  implementation 'com.google.firebase:firebase-analytics'
+content_copy
+
+
+  // Add the dependencies for any other desired Firebase products
+  // https://firebase.google.com/docs/android/setup#available-libraries
+}
+
