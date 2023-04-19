@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GamesActivity">
+
+    <ImageButton
+        android:id="@+id/login_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/chess"
+        android:contentDescription="Admin login page"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/admin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/announcement_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="80dp"
+        android:adjustViewBounds="true"
+        android:background="@color/chess"
+        android:contentDescription="Announcement page"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/announcements"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/game_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="248dp"
+        android:adjustViewBounds="true"
+        android:background="@color/chess"
+        android:contentDescription="Game page"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/negative_game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/event_page"
+        android:layout_width="90dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/chess"
+        android:contentDescription="Event page"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/home_page"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:adjustViewBounds="true"
+        android:background="@color/chess"
+        android:contentDescription="Home page"
+        android:padding="3dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="413dp"
+        android:layout_height="380dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.632">
+
+        <LinearLayout
+            android:id="@+id/gameButtonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/content_announcements" />
+
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/chess"
+        android:contentDescription="Make an announcement"
+        android:scaleType="fitCenter"
+        android:src="@drawable/add"
+        app:fabCustomSize="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.953"
+        app:maxImageSize="35dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,4 +24,8 @@
     <string name="announcement_title_edit_text">Please type the Announcement title here</string>
     <string name="announcement_author_edit_text">Please write your full name here</string>
     <string name="announcement_content_edit_text">Please type the Announcement content here</string>
+    <string name="game_title_edit_text">Please type the names of the players here</string>
+    <string name="game_author_edit_text">Please write your full name here</string>
+    <string name="game_content_edit_text">Please type the game moves here</string>
+    <string name="title_activity_games">GamesActivity</string>
 </resources>

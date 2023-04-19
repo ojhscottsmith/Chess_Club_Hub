@@ -13,6 +13,8 @@ public class EventsActivity extends AppCompatActivity {
 
     ImageButton home;
     ImageButton announcements;
+
+    ImageButton game;
     LinearLayout buttonLayout;
 
     public static final String DISPLAY_EVENT = "event to display";
@@ -48,6 +50,7 @@ public class EventsActivity extends AppCompatActivity {
 
         home = (ImageButton) findViewById(R.id.home_page);
         announcements = (ImageButton) findViewById(R.id.announcement_page);
+        game = (ImageButton) findViewById(R.id.game_page);
 
         home.setOnClickListener(v1 -> {
             SendUserToHomeActivity();
@@ -57,6 +60,16 @@ public class EventsActivity extends AppCompatActivity {
             SendUserToAnnouncementsActivity();
         });
 
+        game.setOnClickListener(v3 -> {
+            SendUserToGamesActivity();
+        });
+
+    }
+
+    private void SendUserToGamesActivity() {
+        Intent displayIntent = new Intent(this,GamesActivity.class);
+        displayIntent.putExtra(DISPLAY_EVENT,displayId);
+        startActivity(displayIntent);
     }
 
     private void SendUserToEvent_Display(){

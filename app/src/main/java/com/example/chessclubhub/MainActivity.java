@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(eventBriefIntent);
     }
 
+    private void SendUserToGameActivity() {
+        Intent mainIntent = new Intent(this, GamesActivity.class);
+        startActivity(mainIntent);
+    }
+
 
 
     @Override
@@ -113,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.game_page:
+                SendUserToGameActivity();
                 componentCalled("Redirects to game page");
                 break;
 

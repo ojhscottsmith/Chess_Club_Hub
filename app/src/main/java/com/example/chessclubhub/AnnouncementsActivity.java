@@ -21,6 +21,7 @@ public class AnnouncementsActivity extends AppCompatActivity {
     //Declaring the interactive components
     ImageButton home;
     ImageButton events;
+    ImageButton game;
     LinearLayout buttonLayout;
 
     //Used when displaying a single announcement
@@ -67,6 +68,10 @@ public class AnnouncementsActivity extends AppCompatActivity {
         home.setOnClickListener(v2 ->{
             SendUserToMainActivity();
         });
+        game = (ImageButton) findViewById(R.id.game_page);
+        game.setOnClickListener(v3 -> {
+            SendUserToGamesActivity();
+        });
 
         events = (ImageButton) findViewById(R.id.event_page);
         events.setOnClickListener(v3 -> {
@@ -86,6 +91,12 @@ public class AnnouncementsActivity extends AppCompatActivity {
     private void SendUserToMainActivity() {
         Intent mainIntent = new Intent(AnnouncementsActivity.this, MainActivity.class);
         startActivity(mainIntent);
+    }
+
+    private void SendUserToGamesActivity() {
+        Intent displayIntent = new Intent(this,GamesActivity.class);
+        displayIntent.putExtra(DISPLAY_ANNOUNCEMENT,displayId);
+        startActivity(displayIntent);
     }
 
     //Event that directs user to a more detailed view of a single announcement
