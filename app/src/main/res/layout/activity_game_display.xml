@@ -10,69 +10,87 @@
         android:id="@+id/gameBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/chess"
+        android:text="@string/back_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903"
-        android:text="@string/back_button"
-        android:backgroundTint="@color/chess">
+        app:layout_constraintVertical_bias="0.954">
+
+    </Button>
+
+    <Button
+        android:id="@+id/gameExportButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/chess"
+        android:text="@string/game_export_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954">
 
     </Button>
 
     <LinearLayout
-        android:layout_width="413dp"
-        android:layout_height="468dp"
-        android:orientation="vertical"
+        android:layout_width="414dp"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.171">
-
-        <Button
-            android:id="@+id/gameTitleView"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="@color/chess"
-            android:clickable="false"
-            android:textSize="50pt" />
+        app:layout_constraintVertical_bias="0.119">
 
         <Space
-            android:layout_width="match_parent"
-            android:layout_height="49dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/gameRecorderTab"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/cch_gray"
+            android:textColor="@color/black"
+            android:text="@string/game_recorder_tab_text" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/gameLogTab"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/cch_gray"
+            android:textColor="@color/chess"
+            android:text="@string/game_log_tab_text" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="410dp"
+        android:layout_height="490dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="137dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="73dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/gameDateView"
-                android:layout_width="159dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/chess"
-                android:clickable="false"
-                android:textSize="50pt" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="49dp" />
-
-        <Button
-            android:id="@+id/gameContentView"
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:backgroundTint="@color/chess"
-            android:clickable="false"
-            android:textSize="50pt" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

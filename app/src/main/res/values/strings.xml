@@ -28,4 +28,8 @@
     <string name="game_author_edit_text">Please write your full name here</string>
     <string name="game_content_edit_text">Please type the game moves here</string>
     <string name="title_activity_games">GamesActivity</string>
+
+    <string name="game_log_tab_text">Game Log</string>
+    <string name="game_recorder_tab_text">Game Recorder</string>
+    <string name="game_export_text">Export</string>
 </resources>
