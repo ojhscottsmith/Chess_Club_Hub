@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class Game {
 
     //Declaring the object fields
-    public String date, title, content, author, time;
+    public String date, name, site, black, white, result;
+    public String[] moves = new String[200]; //Hard-limit for the number of moves
 
     //List object to store multiple Event objects
     public static ArrayList<Game> GameList = new ArrayList<>();
@@ -17,12 +18,14 @@ public class Game {
     //Constructors
     public Game(){}
 
-    public Game(String date, String time, String title, String author, String content){
+    public Game(String date, String name, String site, String black, String white, String result, String[] moves){
         this.date = date;
-        this.time = time;
-        this.title = title;
-        this.author = author;
-        this.content = content;
+        this.name = name;
+        this.site = site;
+        this.black = black;
+        this.white = white;
+        this.result = result;
+        this.moves = moves;
     }
 
     //Accessors and Mutators
@@ -34,36 +37,53 @@ public class Game {
         this.date = date;
     }
 
-    public String getTime() {
-        return time;
+    public String getName() {
+        return name;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSite() {
+        return site;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSite(String site) {
+        this.site = site;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getBlack() {
+        return black;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setBlack(String black) {
+        this.black = black;
     }
 
-    public String getContent() {
-        return content;
+    public String getWhite() {
+        return white;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setWhite(String white) {
+        this.white = white;
     }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String[] getMoves() {
+        return moves;
+    }
+
+    public void setMoves(String[] moves) {
+        this.moves = moves;
+    }
+
 
 }
