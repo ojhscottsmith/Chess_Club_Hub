@@ -19,7 +19,7 @@
         android:id="@+id/Second3Fragment"
         android:name="com.example.chessclubhub.Second3Fragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second3">
+        tools:layout="@layout/activity_games_list">
 
         <action
             android:id="@+id/action_Second3Fragment_to_First3Fragment"

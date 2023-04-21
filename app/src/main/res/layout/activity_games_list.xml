@@ -4,37 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GamePostActivity">
-
-    <Button
-        android:id="@+id/gameBackButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/chess"
-        android:text="@string/back_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954">
-
-    </Button>
-
-    <Button
-        android:id="@+id/gameSaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/chess"
-        android:text="@string/game_save_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954">
-
-    </Button>
+    tools:context=".GamesListActivity">
 
     <ImageButton
         android:id="@+id/login_page"
@@ -136,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/cch_gray"
-            android:textColor="@color/chess"
+            android:textColor="@color/black"
             android:text="@string/game_recorder_tab_text" />
 
         <Space
@@ -150,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/cch_gray"
-            android:textColor="@color/black"
+            android:textColor="@color/chess"
             android:text="@string/game_log_tab_text" />
 
         <Space

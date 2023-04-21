@@ -32,4 +32,5 @@
     <string name="game_log_tab_text">Game Log</string>
     <string name="game_recorder_tab_text">Game Recorder</string>
     <string name="game_export_text">Export</string>
+    <string name="game_save_text">Save</string>
 </resources>
