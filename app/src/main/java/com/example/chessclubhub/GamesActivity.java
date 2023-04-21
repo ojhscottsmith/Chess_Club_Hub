@@ -49,7 +49,7 @@ public class GamesActivity extends AppCompatActivity {
             Button tester = new Button(this);
             tester.setId(i);
             tester.setWidth(buttonLayout.getWidth());
-            tester.setText(Game.GameList.get(i).getTitle());
+            tester.setText(Game.GameList.get(i).getName());
             tester.setBackgroundColor(getColor(R.color.chess));
             tester.setTextColor(getColor(R.color.white));
             tester.setOnClickListener(v1 -> {

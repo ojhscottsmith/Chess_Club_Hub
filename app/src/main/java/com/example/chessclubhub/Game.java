@@ -9,8 +9,7 @@ import java.util.ArrayList;
 public class Game {
 
     //Declaring the object fields
-    public String date, name, site, black, white, result;
-    public String[] moves = new String[200]; //Hard-limit for the number of moves
+    public String date, name, site, black, white, result, moves;
 
     //List object to store multiple Event objects
     public static ArrayList<Game> GameList = new ArrayList<>();
@@ -18,7 +17,7 @@ public class Game {
     //Constructors
     public Game(){}
 
-    public Game(String date, String name, String site, String black, String white, String result, String[] moves){
+    public Game(String date, String name, String site, String black, String white, String result, String moves){
         this.date = date;
         this.name = name;
         this.site = site;
@@ -77,12 +76,23 @@ public class Game {
         this.result = result;
     }
 
-    public String[] getMoves() {
+    public String getMoves() {
         return moves;
     }
 
-    public void setMoves(String[] moves) {
+    public void setMoves(String moves) {
         this.moves = moves;
+    }
+
+    @Override
+    public String toString(){
+        return "[Event \"" + name + "\"]\n"
+                + "[Site \"" + name + "\"]\n"
+                + "[Date \"" + date + "\"]\n"
+                + "[White \"" + white + "\"]\n"
+                + "[Black \"" + black + "\"]\n"
+                + "[Result \"" + result + "\"]\n\n"
+                + moves + " " + result;
     }
 
 

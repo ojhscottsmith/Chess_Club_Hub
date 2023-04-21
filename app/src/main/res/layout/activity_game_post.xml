@@ -7,21 +7,6 @@
     tools:context=".GamePostActivity">
 
     <Button
-        android:id="@+id/gameBackButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/chess"
-        android:text="@string/back_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954">
-
-    </Button>
-
-    <Button
         android:id="@+id/gameSaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,10 +14,10 @@
         android:text="@string/game_save_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954">
+        app:layout_constraintVertical_bias="0.956">
 
     </Button>
 
@@ -235,8 +220,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/game_result_hint" />
+                android:hint="@string/game_result_hint"
+                android:inputType="textPersonName" />
 
             <Space
                 android:layout_width="match_parent"

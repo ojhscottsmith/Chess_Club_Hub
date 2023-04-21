@@ -2,56 +2,68 @@ package com.example.chessclubhub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GamePostActivity extends AppCompatActivity {
 
-    Button back;
-    Button post;
-    EditText announcement_title_edit, announcement_author_edit, announcement_content_edit;
+    Button gameLogTab;
+    EditText game_date_edit, game_name_edit, game_site_edit, game_white_edit, game_black_edit, game_result_edit, game_moves_edit;
+    Button gameSaveButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_post);
 
-        post = (Button) findViewById(R.id.post_button);
-        post.setOnClickListener(v1 -> {
-            postAnnouncementEvent();
+        gameSaveButton = (Button) findViewById(R.id.gameSaveButton);
+        gameSaveButton.setOnClickListener(v1 -> {
+            postGameEvent();
         });
 
-        announcement_title_edit = (EditText) findViewById(R.id.announcement_title_edit);
-        announcement_author_edit = (EditText) findViewById(R.id.announcement_author_edit);
-        announcement_content_edit = (EditText) findViewById(R.id.announcement_content_edit);
+        game_date_edit = (EditText) findViewById(R.id.gameDateEditText);
+        game_name_edit = (EditText) findViewById(R.id.gameNameEditText);
+        game_site_edit = (EditText) findViewById(R.id.gameSiteEditText);
+        game_white_edit = (EditText) findViewById(R.id.gameWhiteEditText);
+        game_black_edit = (EditText) findViewById(R.id.gameBlackEditText);
+        game_result_edit = (EditText) findViewById(R.id.gameResultEditText);
+        game_moves_edit = (EditText) findViewById(R.id.gameMovesEditText);
 
-        back = (Button)  findViewById(R.id.back_button);
-        back.setOnClickListener(v2 ->{
-            SendUserToGamesActivity();
+        gameLogTab = (Button)  findViewById(R.id.gameLogTab);
+        gameLogTab.setOnClickListener(v2 ->{
+            SendUserToGameLog();
         });
-
 
     }
 
-    private void postAnnouncementEvent() {
-        String currDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
-        String currTime = new SimpleDateFormat("HH:mm").format(new Date());
-        String title = announcement_title_edit.getText().toString();
-        String author = announcement_author_edit.getText().toString();
-        String content = announcement_content_edit.getText().toString();
+    private void postGameEvent() {
+        String gameDate = game_date_edit.getText().toString();
+        String gameName = game_name_edit.getText().toString();
+        String gameSite = game_site_edit.getText().toString();
+        String gameWhite = game_white_edit.getText().toString();
+        String gameBlack = game_black_edit.getText().toString();
+        String gameResult = game_result_edit.getText().toString();
+        String gameMoves = game_moves_edit.getText().toString();
 
-        Game newGame = new Game(currDate,currTime,title,author,content);
+        Game newGame = new Game(gameDate,gameName,gameSite,gameBlack,gameWhite,gameResult,gameMoves);
         Game.GameList.add(newGame);
-        SendUserToGamesActivity();
-
     }
-    private void SendUserToGamesActivity() {
-        Intent mainIntent = new Intent(GamePostActivity.this, GamesActivity.class);
-        startActivity(mainIntent);
+
+    private void SendUserToGameLog() {
+        Intent gameLogIntent = new Intent(this, GamesListActivity.class);
+        startActivity(gameLogIntent);
+
+        final int DURATION = Toast.LENGTH_LONG;
+        Context context = getApplicationContext();
+        Toast debugger = Toast.makeText(context,"Game Posted!",DURATION);
+        debugger.show();
     }
 }

@@ -7,7 +7,7 @@
     tools:context=".Game_Display">
 
     <Button
-        android:id="@+id/gameBackButton"
+        android:id="@+id/gameBackToDetailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/chess"
@@ -37,6 +37,7 @@
     </Button>
 
     <ScrollView
+        android:id="@+id/gameInfoScroll"
         android:layout_width="409dp"
         android:layout_height="597dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,10 +132,12 @@
                 android:text="" />
 
             <ScrollView
+                android:id="@+id/gameMovesScroll"
                 android:layout_width="match_parent"
                 android:layout_height="196dp">
 
                 <LinearLayout
+                    android:id="@+id/gameMovesLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">

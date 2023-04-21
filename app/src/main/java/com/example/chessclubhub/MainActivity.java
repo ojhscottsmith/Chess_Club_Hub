@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Event.EventList.add(new Event("06/27/2023", "June Blitz", "A fun one: the Chess Alliance will be going to Pittsburgh for a USCF-sponsored tournament! Sign up here: https://rb.gy/tdmnp"));
         }
 
+        if(Game.GameList.size()==0){
+            Game.GameList.add(new Game("10/01/1885","Opera Game", "Paris, France", "Karl II", "Paul Morphy", "1-0", "1. e4 e5 2. Nf3 d6 3. d4 Bg4 4. dxe5 Bxf3 5. Qxf3 dxe5 6. Bc4 Nf6 7. Qb3 Qe7 8. Nc3 c6 9. Bg5 b5 10. Nxb5 cxb5 11. Bxb5+ Nbd7 12. 0-0-0 Rd8 13. Rxd7 Rxd7 14. Rd1 Qe6 15. Bxd7+ Nxd7 16. Qb8+ Nxb8 17. Rd8#"));
+            Game.GameList.add(new Game("04/20/2023","Chess.com","Chess.com", "EzyFreeezy", "vinash101", "1/2 - 1/2", "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Qb3 Qb6 7. Qg3 Qxd4 8. Qe3 Bc5 9. Qxd4 Bxd4 10. f4 Ne7 11. Nf3 Bb6 12. Nc3 O-O 13. Na4 Nd7 14. Nxb6 Nxb6 15. Bd2 Rfd8 16. O-O-O d4 17. Bb4 Nf5 18. g4 a5 19. Bc5 Ne3 20. Rxd4 Nbc4 21. b3 Rxd4 22. Nxd4 b6 23. bxc4 bxc5 24. Nxc6 Nxg4 25. h3 Nf2 26. Rh2 Ne4 27. h4 Nc3 28. Kb2 Na4+ 29. Kb3 Nb6 30. h5 h6 31. c3 a4+ 32. Kc2 Nxc4 33. Kd3 Nb6 34. Rb2 Ra6 35. Nb8 c4+ 36. Kc2 a3 37. Rb1 Ra7 38. Rxb6 Kf8 39. Nc6 Ra8 40. Rb8+ Rxb8 41. Nxb8 Ke8 42. Nc6 Kd7 43. Na5 Ke7 44. Nxc4 f6 45. exf6+ Kxf6 46. Nxa3 g6 47. hxg6 Kxg6 48. c4 h5 49. c5 h4 50. c6 h3 51. c7 h2 52. c8=Q h1=Q 53. Qxe6+ Kg7 54. Qe7+ Kg6 55. Qe6+ Kg7 56. Qg4+ Kf7 57. Qd7+ Kg6 58. f5+ Kf6 59. Nc4 Qe4+ 60. Kb3 Qxf5 61. Qxf5+ Kxf5 62. a4 Ke6 63. a5 Kd7 64. Kb4 Kc7 65. Kb5 Kb7 66. a6+ Ka7 67. Na5 Kb8 68. Nc6+ Ka8 69. Kb6"));
+            Game.GameList.add(new Game("04/19/2023","Chess.com","Chess.com","martin-779","EzyFreeezy","1-0","1. d4 e6 2. Nf3 Nc6 3. Bf4 Bd6 4. e3 Bxf4 5. exf4 Nf6 6. Bd3 O-O 7. c3 b6 8. O-O Nh5 9. Ng5 g6 10. Nd2 Nxf4 11. Qg4 Nxd3 12. Qh4 h6 13. Qxh6 Re8 14. Qh7+ Kf8 15. Qxf7#"));
+        }
+
         //Binding components with view
         announcementBrief = findViewById(R.id.announcementBrief);
         eventsBrief = findViewById(R.id.eventsBrief);
@@ -88,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void SendUserToGameActivity() {
-        Intent mainIntent = new Intent(this, GamesActivity.class);
+        Intent mainIntent = new Intent(this, GamesListActivity.class);
         startActivity(mainIntent);
     }
 

@@ -40,5 +40,6 @@
     <string name="game_white_hint">Enter name of player with white pieces</string>
     <string name="game_result_hint">Enter game result here</string>
     <string name="game_moves_text">Enter game moves</string>
+    <string name="game_moves_title_text">Moves</string>
 
 </resources>

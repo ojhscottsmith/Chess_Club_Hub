@@ -85,7 +85,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/gameBackButton"
+        android:id="@+id/gameBackToListButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/chess"
@@ -100,6 +100,7 @@
     </Button>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="414dp"
         android:layout_height="46dp"
         android:orientation="horizontal"
@@ -121,8 +122,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/cch_gray"
-            android:textColor="@color/black"
-            android:text="@string/game_recorder_tab_text" />
+            android:text="@string/game_recorder_tab_text"
+            android:textColor="@color/black" />
 
         <Space
             android:layout_width="wrap_content"
@@ -135,8 +136,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/cch_gray"
-            android:textColor="@color/chess"
-            android:text="@string/game_log_tab_text" />
+            android:text="@string/game_log_tab_text"
+            android:textColor="@color/chess" />
 
         <Space
             android:layout_width="wrap_content"
@@ -145,15 +146,23 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/gamesDetailScroll"
         android:layout_width="410dp"
         android:layout_height="490dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="137dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56">
 
         <LinearLayout
+            android:id="@+id/gamesPlayedLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+            <include layout="@layout/content_games" />
+
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
