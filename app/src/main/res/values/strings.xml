@@ -33,4 +33,12 @@
     <string name="game_recorder_tab_text">Game Recorder</string>
     <string name="game_export_text">Export</string>
     <string name="game_save_text">Save</string>
+    <string name="game_event_name_hint">Enter event name here</string>
+    <string name="game_event_date_hint">Enter event date here</string>
+    <string name="game_event_site_hint">Enter event site here</string>
+    <string name="game_black_hint">Enter name of player with black pieces</string>
+    <string name="game_white_hint">Enter name of player with white pieces</string>
+    <string name="game_result_hint">Enter game result here</string>
+    <string name="game_moves_text">Enter game moves</string>
+
 </resources>
