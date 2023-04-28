@@ -32,6 +32,8 @@ public class GamesListActivity extends AppCompatActivity {
     ImageButton events;
     ImageButton announcement;
 
+    ImageButton login;
+
     Button gameRecorderTab;
 
     LinearLayout buttonLayout;
@@ -103,6 +105,11 @@ public class GamesListActivity extends AppCompatActivity {
             SendUserToGameRecorder();
         });
 
+        login = (ImageButton) findViewById(R.id.login_page);
+        login.setOnClickListener(v5 -> {
+            SendUserToLoginActivity();
+        });
+
     }
 
     //Event that directs user back to home page
@@ -132,6 +139,11 @@ public class GamesListActivity extends AppCompatActivity {
     private void SendUserToGameRecorder() {
         Intent gameRecorderIntent = new Intent(this, GamePostActivity.class);
         startActivity(gameRecorderIntent);
+    }
+
+    private void SendUserToLoginActivity(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 
 

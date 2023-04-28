@@ -15,6 +15,8 @@ public class EventsActivity extends AppCompatActivity {
     ImageButton announcements;
 
     ImageButton game;
+
+    ImageButton login;
     LinearLayout buttonLayout;
 
     public static final String DISPLAY_EVENT = "event to display";
@@ -51,6 +53,7 @@ public class EventsActivity extends AppCompatActivity {
         home = (ImageButton) findViewById(R.id.home_page);
         announcements = (ImageButton) findViewById(R.id.announcement_page);
         game = (ImageButton) findViewById(R.id.game_page);
+        login = (ImageButton) findViewById(R.id.login_page);
 
         home.setOnClickListener(v1 -> {
             SendUserToHomeActivity();
@@ -61,15 +64,18 @@ public class EventsActivity extends AppCompatActivity {
         });
 
         game.setOnClickListener(v3 -> {
-            SendUserToGamesActivity();
+            SendUserToGamePage();
+        });
+
+        login.setOnClickListener(v4 -> {
+            SendUserToLoginActivity();
         });
 
     }
 
-    private void SendUserToGamesActivity() {
-        Intent displayIntent = new Intent(this,GamesActivity.class);
-        displayIntent.putExtra(DISPLAY_EVENT,displayId);
-        startActivity(displayIntent);
+    private void SendUserToGamePage(){
+        Intent gameIntent = new Intent(this, GamesListActivity.class);
+        startActivity(gameIntent);
     }
 
     private void SendUserToEvent_Display(){
@@ -86,5 +92,9 @@ public class EventsActivity extends AppCompatActivity {
     private void SendUserToAnnouncementsActivity(){
         Intent announcementIntent = new Intent(this, AnnouncementsActivity.class);
         startActivity(announcementIntent);
+    }
+    private void SendUserToLoginActivity(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 }

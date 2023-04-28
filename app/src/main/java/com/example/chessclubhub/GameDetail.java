@@ -27,6 +27,8 @@ public class GameDetail extends AppCompatActivity {
     ImageButton home;
     ImageButton events;
     ImageButton announcement;
+
+    ImageButton login;
     LinearLayout buttonLayout;
 
     Button gameRecorderTab;
@@ -93,6 +95,11 @@ public class GameDetail extends AppCompatActivity {
             SendUserToEventsActivity();
         });
 
+        login = (ImageButton) findViewById(R.id.login_page);
+        login.setOnClickListener(v8 -> {
+            SendUserToLoginActivity();
+        });
+
         gameRecorderTab = (Button) findViewById(R.id.gameRecorderTab);
         gameRecorderTab.setOnClickListener(v4 -> {
             SendUserToGameRecorder();
@@ -109,6 +116,11 @@ public class GameDetail extends AppCompatActivity {
     private void SendUserToMainActivity() {
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
+    }
+
+    private void SendUserToLoginActivity(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 
     private void SendUserToAnnouncementsActivity() {

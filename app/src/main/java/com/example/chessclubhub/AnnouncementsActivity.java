@@ -22,6 +22,8 @@ public class AnnouncementsActivity extends AppCompatActivity {
     ImageButton home;
     ImageButton events;
     ImageButton game;
+
+    ImageButton login;
     LinearLayout buttonLayout;
 
     //Used when displaying a single announcement
@@ -70,13 +72,19 @@ public class AnnouncementsActivity extends AppCompatActivity {
         });
         game = (ImageButton) findViewById(R.id.game_page);
         game.setOnClickListener(v3 -> {
-            SendUserToGamesActivity();
+            SendUserToGamePage();
         });
 
         events = (ImageButton) findViewById(R.id.event_page);
         events.setOnClickListener(v3 -> {
             SendUserToEventsActivity();
         });
+
+        login = (ImageButton) findViewById(R.id.login_page);
+        login.setOnClickListener(v4 -> {
+            SendUserToLoginActivity();
+        });
+
 
         //Logic for Floating Action Button (adding a new announcement)
         binding.fab.setOnClickListener(new View.OnClickListener() {
@@ -93,10 +101,9 @@ public class AnnouncementsActivity extends AppCompatActivity {
         startActivity(mainIntent);
     }
 
-    private void SendUserToGamesActivity() {
-        Intent displayIntent = new Intent(this,GamesActivity.class);
-        displayIntent.putExtra(DISPLAY_ANNOUNCEMENT,displayId);
-        startActivity(displayIntent);
+    private void SendUserToGamePage(){
+        Intent gameIntent = new Intent(this, GamesListActivity.class);
+        startActivity(gameIntent);
     }
 
     //Event that directs user to a more detailed view of a single announcement
@@ -115,6 +122,11 @@ public class AnnouncementsActivity extends AppCompatActivity {
     private void SendUserToEventsActivity(){
         Intent eventIntent = new Intent(this, EventsActivity.class);
         startActivity(eventIntent);
+    }
+
+    private void SendUserToLoginActivity(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 
     @Override

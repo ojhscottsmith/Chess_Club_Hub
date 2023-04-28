@@ -24,6 +24,7 @@ public class GamesActivity extends AppCompatActivity {
     ImageButton home;
     ImageButton announcements;
     ImageButton events;
+    ImageButton login;
     LinearLayout buttonLayout;
 
     public static final String DISPLAY_GAME = "game to display";
@@ -70,6 +71,7 @@ public class GamesActivity extends AppCompatActivity {
         home = (ImageButton) findViewById(R.id.home_page);
         announcements = (ImageButton) findViewById(R.id.announcement_page);
         events = (ImageButton) findViewById(R.id.event_page);
+        login = (ImageButton) findViewById(R.id.login_page);
 
         home.setOnClickListener(v1 -> {
             SendUserToHomeActivity();
@@ -81,12 +83,20 @@ public class GamesActivity extends AppCompatActivity {
         events.setOnClickListener(v3 ->{
             SendUserToEventsActivity();
         });
+        login.setOnClickListener(v4 -> {
+            SendUserToLoginActivity();
+        });
     }
 
     private void SendUserToGame_Post_Display() {
         Intent displayIntent = new Intent(this,Game_Post_Display.class);
         displayIntent.putExtra(DISPLAY_GAME,displayId);
         startActivity(displayIntent);
+    }
+
+    private void SendUserToLoginActivity(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 
     private void SendUserToEventsActivity() {

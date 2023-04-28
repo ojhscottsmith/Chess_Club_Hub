@@ -11,6 +11,8 @@ public class Event_Display extends AppCompatActivity {
     Button eventTitleView, eventDateView, eventContentView;
     Button eventBackButton;
 
+    Button eventDeleteButton;
+
     public static final String DISPLAY_EVENT = "event to display";
 
     @Override
@@ -29,6 +31,8 @@ public class Event_Display extends AppCompatActivity {
         eventTitleView = (Button) findViewById(R.id.eventTitleView);
         eventDateView = (Button) findViewById(R.id.eventDateView);
         eventContentView = (Button) findViewById(R.id.eventContentView);
+
+
 
         eventTitleView.setClickable(false);
         eventDateView.setClickable(false);

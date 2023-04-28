@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ import java.util.Date;
 
 public class GamePostActivity extends AppCompatActivity {
 
+    ImageButton home, event, announcement, login;
     Button gameLogTab;
     EditText game_date_edit, game_name_edit, game_site_edit, game_white_edit, game_black_edit, game_result_edit, game_moves_edit;
     Button gameSaveButton;
@@ -42,6 +44,26 @@ public class GamePostActivity extends AppCompatActivity {
             SendUserToGameLog();
         });
 
+        home = (ImageButton) findViewById(R.id.home_page);
+        home.setOnClickListener(v1 -> {
+            SendUserToHomeActivity();
+        });
+
+        event = (ImageButton) findViewById(R.id.event_page);
+        event.setOnClickListener(v2 -> {
+            SendUserToEventsActivity();
+        });
+
+        announcement = (ImageButton) findViewById(R.id.announcement_page);
+        announcement.setOnClickListener(v3 -> {
+            SendUserToAnnouncementsActivity();
+        });
+
+        login = (ImageButton) findViewById(R.id.login_page);
+        login.setOnClickListener(v4 -> {
+            SendUserToLoginActivity();
+        });
+
     }
 
     private void postGameEvent() {
@@ -65,5 +87,29 @@ public class GamePostActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         Toast debugger = Toast.makeText(context,"Game Posted!",DURATION);
         debugger.show();
+    }
+    private void SendUserToLoginActivity(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
+    }
+
+    private void SendUserToEventsActivity() {
+        Intent displayIntent = new Intent(this,EventsActivity.class);
+        startActivity(displayIntent);
+    }
+
+    private void SendUserToGamePostActivity(){
+        Intent displayIntent = new Intent(this,GamePostActivity.class);
+        startActivity(displayIntent);
+    }
+
+    private void SendUserToHomeActivity(){
+        Intent homeIntent = new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
+    }
+
+    private void SendUserToAnnouncementsActivity(){
+        Intent announcementIntent = new Intent(this, AnnouncementsActivity.class);
+        startActivity(announcementIntent);
     }
 }
