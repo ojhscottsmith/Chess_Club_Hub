@@ -10,4 +10,6 @@
     <color name="brown">#964B00</color>
     <color name="chess">#77423E</color>
     <color name="cch_gray">#D9D9D9</color>
+    <color name="cch_maroon">#800000</color>
+    <color name="cch_green">#013220</color>
 </resources>

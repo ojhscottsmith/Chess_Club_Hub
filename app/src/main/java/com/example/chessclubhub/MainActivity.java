@@ -98,6 +98,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(mainIntent);
     }
 
+    private void SendUserToLoginActivity(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
+    }
+
 
 
     @Override
@@ -139,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.login_page:
+                SendUserToLoginActivity();
                 componentCalled("Redirects to admin login page");
                 break;
         }
