@@ -22,13 +22,23 @@ public class Game_Display extends AppCompatActivity {
     //Used when displaying a single game
     public static final String GAME_TO_DISPLAY = "individual game to display";
 
+    //Used when displaying the list of games played in an event
+    public static final String DISPLAY_GAMES = "games to display";
+    public static String displayGameEvent = " ";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_display);
+
+        Intent intent = getIntent();
+        int gameId = intent.getIntExtra(GAME_TO_DISPLAY,0);
+        currGame= Game.GameList.get(gameId);
+
         gameBackToDetailButton = (Button)  findViewById(R.id.gameBackToDetailButton);
         gameBackToDetailButton.setOnClickListener(v1 ->{
+            displayGameEvent = currGame.getName();
             SendUserToGameDetail();
         });
 
@@ -41,10 +51,6 @@ public class Game_Display extends AppCompatActivity {
 //        gameRecorderTab.setOnClickListener(v3 -> {
 //            SendUserToGameRecorder();
 //        });
-
-        Intent intent = getIntent();
-        int gameId = intent.getIntExtra(GAME_TO_DISPLAY,0);
-        currGame= Game.GameList.get(gameId);
 
         gameDateView = (Button) findViewById(R.id.gameDateView);
         gameEventNameView = (Button) findViewById(R.id.gameNameView);
@@ -74,6 +80,7 @@ public class Game_Display extends AppCompatActivity {
     }
     private void SendUserToGameDetail() {
         Intent detailIntent = new Intent(this, GameDetail.class);
+        detailIntent.putExtra(DISPLAY_GAMES,displayGameEvent);
         startActivity(detailIntent);
     }
 //
