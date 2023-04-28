@@ -91,10 +91,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.119">
+        app:layout_constraintVertical_bias="0.141">
 
         <Space
             android:layout_width="wrap_content"
@@ -135,9 +135,11 @@
         android:layout_width="410dp"
         android:layout_height="490dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56">
+        app:layout_constraintVertical_bias="0.809">
 
         <LinearLayout
             android:id="@+id/gameEventsLayout"
