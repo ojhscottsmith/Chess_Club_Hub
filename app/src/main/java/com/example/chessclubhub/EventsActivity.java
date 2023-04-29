@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Space;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EventsActivity extends AppCompatActivity {
 
@@ -18,6 +21,8 @@ public class EventsActivity extends AppCompatActivity {
 
     ImageButton login;
     LinearLayout buttonLayout;
+
+    FloatingActionButton fab;
 
     public static final String DISPLAY_EVENT = "event to display";
 
@@ -71,6 +76,12 @@ public class EventsActivity extends AppCompatActivity {
             SendUserToLoginActivity();
         });
 
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(LoginActivity.loggedIn ? View.VISIBLE : View.GONE);
+        fab.setOnClickListener(v5 -> {
+            SendUserToPostEventActivity();
+        });
+
     }
 
     private void SendUserToGamePage(){
@@ -96,5 +107,10 @@ public class EventsActivity extends AppCompatActivity {
     private void SendUserToLoginActivity(){
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
+    }
+
+    private void SendUserToPostEventActivity(){
+        Intent postEventIntent = new Intent(this, PostEventActivity.class);
+        startActivity(postEventIntent);
     }
 }

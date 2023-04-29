@@ -29,6 +29,10 @@
     <string name="game_content_edit_text">Please type the game moves here</string>
     <string name="title_activity_games">GamesActivity</string>
 
+    <string name="event_title_edit">Please type the Event title here</string>
+    <string name="event_date_edit">Please type the Event date here</string>
+    <string name="event_content_edit">Please provide a description of the event here</string>
+
     <string name="game_log_tab_text">Game Log</string>
     <string name="game_recorder_tab_text">Game Recorder</string>
     <string name="game_export_text">Export</string>
