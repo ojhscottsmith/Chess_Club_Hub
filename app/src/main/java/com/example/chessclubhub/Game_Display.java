@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -14,8 +15,9 @@ public class Game_Display extends AppCompatActivity {
 
     Button gameDateView, gameEventNameView, gameEventSiteView, gameWhiteView, gameBlackView, gameMovesTitle, gameMovesView;
     Button gameBackToDetailButton;
-//    Button gameRecorderTab;
     Button gameExportButton;
+
+    Button gameEditButton, gameDeleteButton;
 
     Game currGame;
 
@@ -26,6 +28,8 @@ public class Game_Display extends AppCompatActivity {
     public static final String DISPLAY_GAMES = "games to display";
     public static String displayGameEvent = " ";
 
+    int gameId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,7 +37,7 @@ public class Game_Display extends AppCompatActivity {
         setContentView(R.layout.activity_game_display);
 
         Intent intent = getIntent();
-        int gameId = intent.getIntExtra(GAME_TO_DISPLAY,0);
+        gameId = intent.getIntExtra(GAME_TO_DISPLAY,0);
         currGame= Game.GameList.get(gameId);
 
         gameBackToDetailButton = (Button)  findViewById(R.id.gameBackToDetailButton);
@@ -46,11 +50,6 @@ public class Game_Display extends AppCompatActivity {
         gameExportButton.setOnClickListener(v2 -> {
             exportGame();
         });
-
-//        gameRecorderTab = (Button) findViewById(R.id.gameRecorderTab);
-//        gameRecorderTab.setOnClickListener(v3 -> {
-//            SendUserToGameRecorder();
-//        });
 
         gameDateView = (Button) findViewById(R.id.gameDateView);
         gameEventNameView = (Button) findViewById(R.id.gameNameView);
@@ -77,18 +76,33 @@ public class Game_Display extends AppCompatActivity {
         gameMovesView.setText(currGame.getMoves());
 
         gameMovesTitle.setText(R.string.game_moves_title_text);
+
+        gameEditButton = (Button) findViewById(R.id.gameEditButton);
+        gameEditButton.setOnClickListener(v3 -> {
+            EditGame();
+        });
+
+        gameDeleteButton = (Button) findViewById(R.id.gameDeleteButton);
+        gameDeleteButton.setOnClickListener(v4 -> {
+            DeleteGame();
+        });
+
+        if(LoginActivity.loggedIn){
+            gameEditButton.setVisibility(View.VISIBLE);
+            gameDeleteButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            gameEditButton.setVisibility(View.GONE);
+            gameDeleteButton.setVisibility(View.GONE);
+        }
+
+
     }
     private void SendUserToGameDetail() {
         Intent detailIntent = new Intent(this, GameDetail.class);
         detailIntent.putExtra(DISPLAY_GAMES,displayGameEvent);
         startActivity(detailIntent);
     }
-//
-//    Event that directs user to a view where they can post their own game
-//    private void SendUserToGameRecorder() {
-//        Intent gameRecorderIntent = new Intent(this, GamePostActivity.class);
-//        startActivity(gameRecorderIntent);
-//    }
 
     private void exportGame(){
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -99,5 +113,16 @@ public class Game_Display extends AppCompatActivity {
         Context context = getApplicationContext();
         Toast debugger = Toast.makeText(context,".PGN Copied to Clipboard",DURATION);
         debugger.show();
+    }
+
+    private void DeleteGame(){
+        Game.GameList.remove(currGame);
+        SendUserToGameDetail();
+    }
+
+    private void EditGame(){
+        Intent editIntent = new Intent(this, GamePostActivity.class);
+        editIntent.putExtra(GAME_TO_DISPLAY,gameId);
+        startActivity(editIntent);
     }
 }
