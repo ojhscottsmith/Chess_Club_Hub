@@ -32,9 +32,6 @@
     <string name="event_title_edit">Please type the Event title here</string>
     <string name="event_date_edit">Please type the Event date here</string>
     <string name="event_content_edit">Please provide a description of the event here</string>
-    <string name="event_edit_button">Edit</string>
-    <string name="event_save_changes_button">Save Changes</string>
-    <string name="event_delete_button">Delete</string>
 
     <string name="game_log_tab_text">Game Log</string>
     <string name="game_recorder_tab_text">Game Recorder</string>
@@ -56,5 +53,9 @@
 
     <string name="example_username">cchadmin1</string>
     <string name="example_password">CS300IsAwesome!</string>
+
+    <string name="edit_button">Edit</string>
+    <string name="save_changes_button">Save Changes</string>
+    <string name="delete_button">Delete</string>
 
 </resources>

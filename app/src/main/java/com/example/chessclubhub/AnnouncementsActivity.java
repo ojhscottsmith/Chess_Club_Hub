@@ -22,13 +22,14 @@ public class AnnouncementsActivity extends AppCompatActivity {
     ImageButton home;
     ImageButton events;
     ImageButton game;
-
     ImageButton login;
     LinearLayout buttonLayout;
 
     //Used when displaying a single announcement
     public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
     public static int displayId = 0;
+
+    Button announcementDeleteButton, announcementEditButton;
 
     //Binding purposes
     private AppBarConfiguration appBarConfiguration;

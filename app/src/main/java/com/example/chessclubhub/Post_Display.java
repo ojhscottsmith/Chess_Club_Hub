@@ -3,6 +3,7 @@ package com.example.chessclubhub;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class Post_Display extends AppCompatActivity {
@@ -10,7 +11,12 @@ public class Post_Display extends AppCompatActivity {
 
     public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
 
+    Announcement currAnnouncement;
+    int announcementId;
+
     Button announcementDateView,announcementTimeView,announcementTitleView,announcementAuthorView,announcementContentView;
+
+    Button announcementEditButton, announcementDeleteButton;
 
 
     @Override
@@ -24,8 +30,8 @@ public class Post_Display extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        int announcementId = intent.getIntExtra(DISPLAY_ANNOUNCEMENT,0);
-        Announcement currAnnouncement = Announcement.AnnouncementList.get(announcementId);
+        announcementId = intent.getIntExtra(DISPLAY_ANNOUNCEMENT,0);
+        currAnnouncement = Announcement.AnnouncementList.get(announcementId);
 
         announcementDateView = (Button) findViewById(R.id.announcementDateView);
         announcementTimeView = (Button) findViewById(R.id.announcementTimeView);
@@ -44,9 +50,39 @@ public class Post_Display extends AppCompatActivity {
         announcementTitleView.setText(currAnnouncement.getTitle());
         announcementAuthorView.setText(currAnnouncement.getAuthor());
         announcementContentView.setText(currAnnouncement.getContent());
+
+        announcementEditButton = (Button) findViewById(R.id.editAnnouncementButton);
+        announcementEditButton.setOnClickListener(v5 -> {
+            EditAnnouncement();
+        });
+
+        announcementDeleteButton = (Button) findViewById(R.id.deleteAnnouncementButton);
+        announcementDeleteButton.setOnClickListener(v6 -> {
+            DeleteAnnouncement();
+        });
+
+        if(LoginActivity.loggedIn){
+            announcementEditButton.setVisibility(View.VISIBLE);
+            announcementDeleteButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            announcementEditButton.setVisibility(View.GONE);
+            announcementDeleteButton.setVisibility(View.GONE);
+        }
     }
     private void SendUserToAnnouncementsActivity() {
         Intent mainIntent = new Intent(Post_Display.this, AnnouncementsActivity.class);
         startActivity(mainIntent);
+    }
+
+    private void EditAnnouncement(){
+        Intent editIntent = new Intent(this, PostActivity.class);
+        editIntent.putExtra(DISPLAY_ANNOUNCEMENT, announcementId);
+        startActivity(editIntent);
+    }
+
+    private void DeleteAnnouncement(){
+        Announcement.AnnouncementList.remove(currAnnouncement);
+        SendUserToAnnouncementsActivity();
     }
 }
