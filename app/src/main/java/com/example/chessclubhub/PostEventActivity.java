@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,12 +16,20 @@ public class PostEventActivity extends AppCompatActivity {
 
     Button eventBack;
     Button eventPost;
+
+    Button eventEdit;
     EditText eventTitleEdit, eventDateEdit, eventContentEdit;
+
+    public static final String DISPLAY_EVENT = "event to display";
+
+    Event currEvent;
+    int eventId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_event);
+
         eventPost = (Button) findViewById(R.id.postEventButton);
         eventPost.setOnClickListener(v1 -> {
             PostEvent();
@@ -35,6 +44,27 @@ public class PostEventActivity extends AppCompatActivity {
             SendUserToEventsActivity();
         });
 
+        eventEdit = (Button) findViewById(R.id.editEventButton);
+        eventEdit.setOnClickListener(v3 -> {
+            EditEvent();
+        });
+
+        Intent intent = getIntent();
+        eventId = intent.getIntExtra(DISPLAY_EVENT,-1);
+
+        if(eventId == -1) {
+            eventPost.setVisibility(View.VISIBLE);
+            eventEdit.setVisibility(View.GONE);
+        }
+        else {
+            Event currEvent = Event.EventList.get(eventId);
+            eventPost.setVisibility(View.GONE);
+            eventEdit.setVisibility(View.VISIBLE);
+
+            eventTitleEdit.setText(currEvent.getTitle());
+            eventDateEdit.setText(currEvent.getDate());
+            eventContentEdit.setText(currEvent.getContent());
+        }
 
     }
 
@@ -49,5 +79,16 @@ public class PostEventActivity extends AppCompatActivity {
     private void SendUserToEventsActivity() {
         Intent mainIntent = new Intent(this, EventsActivity.class);
         startActivity(mainIntent);
+    }
+
+    private void EditEvent(){
+        String eventTitle = eventTitleEdit.getText().toString();
+        String eventDate = eventDateEdit.getText().toString();
+        String eventContent = eventContentEdit.getText().toString();
+
+        Event editedEvent = new Event(eventDate, eventTitle, eventContent);
+
+        Event.EventList.set(eventId,editedEvent);
+        SendUserToEventsActivity();
     }
 }

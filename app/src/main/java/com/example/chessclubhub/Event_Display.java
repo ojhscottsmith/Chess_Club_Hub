@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class Event_Display extends AppCompatActivity {
@@ -11,9 +12,13 @@ public class Event_Display extends AppCompatActivity {
     Button eventTitleView, eventDateView, eventContentView;
     Button eventBackButton;
 
-    Button eventDeleteButton;
+    Button eventEditButton, eventDeleteButton;
 
     public static final String DISPLAY_EVENT = "event to display";
+
+    Event currEvent;
+
+    int eventId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +30,12 @@ public class Event_Display extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        int eventId = intent.getIntExtra(DISPLAY_EVENT,0);
-        Event currEvent= Event.EventList.get(eventId);
+        eventId = intent.getIntExtra(DISPLAY_EVENT,0);
+        currEvent= Event.EventList.get(eventId);
 
         eventTitleView = (Button) findViewById(R.id.eventTitleView);
         eventDateView = (Button) findViewById(R.id.eventDateView);
         eventContentView = (Button) findViewById(R.id.eventContentView);
-
-
 
         eventTitleView.setClickable(false);
         eventDateView.setClickable(false);
@@ -41,9 +44,39 @@ public class Event_Display extends AppCompatActivity {
         eventTitleView.setText(currEvent.getTitle());
         eventDateView.setText(currEvent.getDate());
         eventContentView.setText(currEvent.getContent());
+
+        eventEditButton = (Button) findViewById(R.id.editEventButton);
+        eventEditButton.setOnClickListener(v2 -> {
+            EditEvent();
+        });
+
+        eventDeleteButton = (Button) findViewById(R.id.deleteEventButton);
+        eventDeleteButton.setOnClickListener(v3 -> {
+            DeleteEvent();
+        });
+
+        if(LoginActivity.loggedIn){
+            eventEditButton.setVisibility(View.VISIBLE);
+            eventDeleteButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            eventEditButton.setVisibility(View.GONE);
+            eventDeleteButton.setVisibility(View.GONE);
+        }
     }
     private void SendUserToEventsActivity() {
         Intent mainIntent = new Intent(this, EventsActivity.class);
         startActivity(mainIntent);
+    }
+
+    private void EditEvent() {
+        Intent editIntent = new Intent(this, PostEventActivity.class);
+        editIntent.putExtra(DISPLAY_EVENT, eventId);
+        startActivity(editIntent);
+    }
+
+    private void DeleteEvent() {
+        Event.EventList.remove(currEvent);
+        SendUserToEventsActivity();
     }
 }
