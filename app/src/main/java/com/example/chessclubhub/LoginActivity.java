@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText usernameEdit, passwordEdit;
 
-    Button loginButton, loginState;
+    Button loginButton, logoutButton, loginState;
 
     //App-wide flag to determine login status
     static boolean loggedIn = false;
@@ -51,11 +52,25 @@ public class LoginActivity extends AppCompatActivity {
             AuthenticateLogin();
         });
 
+        logoutButton = (Button) findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(v6 -> {
+            Logout();
+        });
+
         loginState = (Button) findViewById(R.id.loginState);
         usernameEdit = (EditText) findViewById(R.id.login_user_edit);
         passwordEdit = (EditText) findViewById(R.id.login_pwd_edit);
 
-        if(loggedIn) loginState.setBackgroundColor(getColor(R.color.cch_green));
+        if(loggedIn){
+            loginState.setBackgroundColor(getColor(R.color.cch_green));
+            loginButton.setVisibility(View.GONE);
+            logoutButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            loginState.setBackgroundColor(getColor(R.color.cch_maroon));
+            logoutButton.setVisibility(View.GONE);
+            loginButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void SendUserToHomePage(){
@@ -90,10 +105,29 @@ public class LoginActivity extends AppCompatActivity {
             successToast.show();
             loginState.setBackgroundColor(getColor(R.color.cch_green));
             loggedIn = true;
+
+            loginButton.setVisibility(View.GONE);
+            logoutButton.setVisibility(View.VISIBLE);
+
+            usernameEdit.getText().clear();
+            passwordEdit.getText().clear();
         }
         else {
             Toast failToast = Toast.makeText(context,"Incorrect credentials, try again",DURATION);
             failToast.show();
         }
+    }
+
+    private void Logout() {
+        Context context = getApplicationContext();
+        final int DURATION = Toast.LENGTH_LONG;
+        loggedIn = false;
+
+        Toast successToast = Toast.makeText(context,"Logged out!",DURATION);
+        successToast.show();
+
+        logoutButton.setVisibility(View.GONE);
+        loginButton.setVisibility(View.VISIBLE);
+        loginState.setBackgroundColor(getColor(R.color.cch_maroon));
     }
 }

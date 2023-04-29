@@ -45,6 +45,7 @@
     <string name="login_user_hint">Enter CCH Username here</string>
     <string name="login_pwd_hint">Enter CCH Password here</string>
     <string name="login_button_text">Login!</string>
+    <string name="logout_button_text">Logout!</string>
 
     <string name="example_username">cchadmin1</string>
     <string name="example_password">CS300IsAwesome!</string>
