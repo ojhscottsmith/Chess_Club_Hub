@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "158813469233",
-    "project_id": "chess-club-hub",
-    "storage_bucket": "chess-club-hub.appspot.com"
+    "project_number": "384848242653",
+    "firebase_url": "https://cch-database-default-rtdb.firebaseio.com",
+    "project_id": "cch-database",
+    "storage_bucket": "cch-database.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:158813469233:android:818afa287d2955eec27310",
+        "mobilesdk_app_id": "1:384848242653:android:3551da14677e672e9eb834",
         "android_client_info": {
-          "package_name": "com.android.application"
+          "package_name": "com.example.chessclubhub"
         }
       },
       "oauth_client": [
         {
-          "client_id": "158813469233-99d6lviohl5f549vosagp734eqgel44e.apps.googleusercontent.com",
+          "client_id": "384848242653-g3h1f4bf4jk6po096du4ouiv217297ef.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC-1K-xa6NnyVVfldYcDW_heCinX6Rpi64"
+          "current_key": "AIzaSyC3_pVG51gnNz6LmS0J_PHwaIFeDKOR9hs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "158813469233-99d6lviohl5f549vosagp734eqgel44e.apps.googleusercontent.com",
+              "client_id": "384848242653-g3h1f4bf4jk6po096du4ouiv217297ef.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
