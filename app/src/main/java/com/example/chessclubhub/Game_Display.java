@@ -71,8 +71,20 @@ public class Game_Display extends AppCompatActivity {
         gameDateView.setText(currGame.getDate());
         gameEventNameView.setText(currGame.getName());
         gameEventSiteView.setText(currGame.getSite());
-        gameWhiteView.setText(currGame.getWhite());
-        gameBlackView.setText(currGame.getBlack());
+
+        if(currGame.getResult().equals("1-0")){
+            gameWhiteView.setText(currGame.getWhite() + getString(R.string.won));
+            gameBlackView.setText(currGame.getBlack() + getString(R.string.lost));
+        }
+        else if(currGame.getResult().equals("0-1")){
+            gameWhiteView.setText(currGame.getWhite() + getString(R.string.lost));
+            gameBlackView.setText(currGame.getBlack() + getString(R.string.won));
+        }
+        else {
+            gameWhiteView.setText(currGame.getWhite() + getString(R.string.draw));
+            gameBlackView.setText(currGame.getBlack() + getString(R.string.draw));
+        }
+
         gameMovesView.setText(currGame.getMoves());
 
         gameMovesTitle.setText(R.string.game_moves_title_text);

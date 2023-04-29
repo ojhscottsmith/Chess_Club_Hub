@@ -58,4 +58,8 @@
     <string name="save_changes_button">Save Changes</string>
     <string name="delete_button">Delete</string>
 
+    <string name="won">(1)</string>
+    <string name="lost">(0)</string>
+    <string name="draw">(1/2)</string>
+
 </resources>
