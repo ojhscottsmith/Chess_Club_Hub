@@ -2,11 +2,13 @@ package com.example.chessclubhub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -84,6 +86,12 @@ public class PostEventActivity extends AppCompatActivity {
         eventId = Event.EventList.indexOf(newEvent);
         storedEvents.child("event"+eventId).setValue(newEvent);
 
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+
+        Toast successToast = Toast.makeText(context,"Event Posted!",DURATION);
+        successToast.show();
+        SendUserToEventsActivity();
     }
     private void SendUserToEventsActivity() {
         Intent mainIntent = new Intent(this, EventsActivity.class);
@@ -101,6 +109,14 @@ public class PostEventActivity extends AppCompatActivity {
 
         storedEvents.child("event"+eventId).setValue(editedEvent);
 
-        SendUserToEventsActivity();
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+        Toast successToast = Toast.makeText(context,"Changes saved!",DURATION);
+        successToast.show();
+
+        Intent eventDisplayIntent = new Intent(this, Event_Display.class);
+        eventDisplayIntent.putExtra(DISPLAY_EVENT,eventId);
+        startActivity(eventDisplayIntent);
+
     }
 }

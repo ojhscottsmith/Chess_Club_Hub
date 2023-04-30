@@ -2,17 +2,21 @@ package com.example.chessclubhub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import kotlinx.coroutines.channels.Send;
 
 public class PostActivity extends AppCompatActivity {
     Button back;
@@ -83,6 +87,12 @@ public class PostActivity extends AppCompatActivity {
         announcementId = Announcement.AnnouncementList.indexOf(newAnnouncement);
         storedAnnouncements.child("announcement"+announcementId).setValue(newAnnouncement);
 
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+
+        Toast successToast = Toast.makeText(context,"Announcement Posted!",DURATION);
+        successToast.show();
+        SendUserToAnnouncementsActivity();
     }
     private void SendUserToAnnouncementsActivity() {
         Intent mainIntent = new Intent(PostActivity.this, AnnouncementsActivity.class);
@@ -102,6 +112,13 @@ public class PostActivity extends AppCompatActivity {
 
         storedAnnouncements.child("announcement"+announcementId).setValue(newAnnouncement);
 
-        SendUserToAnnouncementsActivity();
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+        Toast successToast = Toast.makeText(context,"Changes saved!",DURATION);
+        successToast.show();
+
+        Intent announcementDisplayIntent = new Intent(this, Post_Display.class);
+        announcementDisplayIntent.putExtra(DISPLAY_ANNOUNCEMENT,announcementId);
+        startActivity(announcementDisplayIntent);
     }
 }

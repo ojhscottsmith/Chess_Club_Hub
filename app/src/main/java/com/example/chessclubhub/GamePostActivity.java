@@ -135,16 +135,17 @@ public class GamePostActivity extends AppCompatActivity {
         gameId = Game.GameList.indexOf(newGame);
         storedGames.child("game"+gameId).setValue(newGame);
 
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+        Toast successToast = Toast.makeText(context,"Game posted!",DURATION);
+        successToast.show();
+
+        SendUserToGameLog();
     }
 
     private void SendUserToGameLog() {
         Intent gameLogIntent = new Intent(this, GamesListActivity.class);
         startActivity(gameLogIntent);
-
-        final int DURATION = Toast.LENGTH_LONG;
-        Context context = getApplicationContext();
-        Toast debugger = Toast.makeText(context,"Game Posted!",DURATION);
-        debugger.show();
     }
     private void SendUserToLoginActivity(){
         Intent loginIntent = new Intent(this, LoginActivity.class);
@@ -191,6 +192,11 @@ public class GamePostActivity extends AppCompatActivity {
 
         storedGames.child("game"+gameId).setValue(newGame);
 
-        SendUserToGameLog();
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+        Toast successToast = Toast.makeText(context,"Changes saved!",DURATION);
+        successToast.show();
+
+        SendUserBackToGame();
     }
 }
