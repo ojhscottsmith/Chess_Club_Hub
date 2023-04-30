@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,6 +31,8 @@ public class GamePostActivity extends AppCompatActivity {
     public static final String GAME_TO_DISPLAY = "individual game to display";
 
     int gameId = -1;
+
+    DatabaseReference storedGames = FirebaseDatabase.getInstance().getReference().child("games");
 
 
     @Override
@@ -126,6 +131,10 @@ public class GamePostActivity extends AppCompatActivity {
 
         Game newGame = new Game(gameDate,gameName,gameSite,gameBlack,gameWhite,gameResult,gameMoves);
         Game.GameList.add(newGame);
+
+        gameId = Game.GameList.indexOf(newGame);
+        storedGames.child("game"+gameId).setValue(newGame);
+
     }
 
     private void SendUserToGameLog() {
@@ -179,6 +188,9 @@ public class GamePostActivity extends AppCompatActivity {
 
         Game newGame = new Game(gameDate,gameName,gameSite,gameBlack,gameWhite,gameResult,gameMoves);
         Game.GameList.set(gameId, newGame);
+
+        storedGames.child("game"+gameId).setValue(newGame);
+
         SendUserToGameLog();
     }
 }

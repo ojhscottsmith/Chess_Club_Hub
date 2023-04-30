@@ -1,15 +1,27 @@
 package com.example.chessclubhub;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -22,55 +34,105 @@ public class LoginActivity extends AppCompatActivity {
     //App-wide flag to determine login status
     static boolean loggedIn = false;
 
+    HashMap<String, String> cchLogins = new HashMap<>();
+
+    DatabaseReference storedLogins = FirebaseDatabase.getInstance().getReference().child("logins");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        homePage = (ImageButton) findViewById(R.id.home_page);
-        homePage.setOnClickListener(v1 -> {
-            SendUserToHomePage();
-        });
+        ValueEventListener gamesValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        gamePage = (ImageButton) findViewById(R.id.game_page);
-        gamePage.setOnClickListener(v2 -> {
-            SendUserToGamePage();
-        });
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String currUser = String.valueOf(ds.child("username").getValue());
+                    String currPass = String.valueOf(ds.child("password").getValue());
 
-        eventPage = (ImageButton) findViewById(R.id.event_page);
-        eventPage.setOnClickListener(v3 -> {
-            SendUserToEventPage();
-        });
+                    cchLogins.put(currUser,currPass);
+                }
 
-        announcementPage = (ImageButton) findViewById(R.id.announcement_page);
-        announcementPage.setOnClickListener(v4 -> {
-            SendUserToAnnouncementPage();
-        });
+                homePage = (ImageButton) findViewById(R.id.home_page);
+                homePage.setOnClickListener(v1 -> {
+                    SendUserToHomePage();
+                });
 
-        loginButton = (Button) findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(v5 -> {
-            AuthenticateLogin();
-        });
+                gamePage = (ImageButton) findViewById(R.id.game_page);
+                gamePage.setOnClickListener(v2 -> {
+                    SendUserToGamePage();
+                });
 
-        logoutButton = (Button) findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(v6 -> {
-            Logout();
-        });
+                eventPage = (ImageButton) findViewById(R.id.event_page);
+                eventPage.setOnClickListener(v3 -> {
+                    SendUserToEventPage();
+                });
 
-        loginState = (Button) findViewById(R.id.loginState);
-        usernameEdit = (EditText) findViewById(R.id.login_user_edit);
-        passwordEdit = (EditText) findViewById(R.id.login_pwd_edit);
+                announcementPage = (ImageButton) findViewById(R.id.announcement_page);
+                announcementPage.setOnClickListener(v4 -> {
+                    SendUserToAnnouncementPage();
+                });
 
-        if(loggedIn){
-            loginState.setBackgroundColor(getColor(R.color.cch_green));
-            loginButton.setVisibility(View.GONE);
-            logoutButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            loginState.setBackgroundColor(getColor(R.color.cch_maroon));
-            logoutButton.setVisibility(View.GONE);
-            loginButton.setVisibility(View.VISIBLE);
-        }
+                loginButton = (Button) findViewById(R.id.loginButton);
+                loginButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String enteredUsername = usernameEdit.getText().toString();
+                        String enteredPassword = passwordEdit.getText().toString();
+
+                        Context context = getApplicationContext();
+                        final int DURATION = Toast.LENGTH_LONG;
+
+                        if(cchLogins.get(enteredUsername).equals(enteredPassword)){
+                            Toast successToast = Toast.makeText(context,"Succesful User Login!",DURATION);
+                            successToast.show();
+                            loginState.setBackgroundColor(getColor(R.color.cch_green));
+                            loggedIn = true;
+
+                            loginButton.setVisibility(View.GONE);
+                            logoutButton.setVisibility(View.VISIBLE);
+
+                            usernameEdit.getText().clear();
+                            passwordEdit.getText().clear();
+                        }
+                        else {
+                            Toast failToast = Toast.makeText(context,"Incorrect credentials, try again",DURATION);
+                            failToast.show();
+                        }
+                    }
+                });
+
+                logoutButton = (Button) findViewById(R.id.logoutButton);
+                logoutButton.setOnClickListener(v5 -> {
+                    Logout();
+                });
+
+                loginState = (Button) findViewById(R.id.loginState);
+                usernameEdit = (EditText) findViewById(R.id.login_user_edit);
+                passwordEdit = (EditText) findViewById(R.id.login_pwd_edit);
+
+                if(loggedIn){
+                    loginState.setBackgroundColor(getColor(R.color.cch_green));
+                    loginButton.setVisibility(View.GONE);
+                    logoutButton.setVisibility(View.VISIBLE);
+                }
+                else {
+                    loginState.setBackgroundColor(getColor(R.color.cch_maroon));
+                    logoutButton.setVisibility(View.GONE);
+                    loginButton.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+        storedLogins.addListenerForSingleValueEvent(gamesValueListener);
+
+
     }
 
     private void SendUserToHomePage(){
@@ -91,31 +153,6 @@ public class LoginActivity extends AppCompatActivity {
     private void SendUserToAnnouncementPage(){
         Intent announcementIntent = new Intent(this, AnnouncementsActivity.class);
         startActivity(announcementIntent);
-    }
-
-    private void AuthenticateLogin() {
-        String enteredUsername = usernameEdit.getText().toString();
-        String enteredPassword = passwordEdit.getText().toString();
-
-        Context context = getApplicationContext();
-        final int DURATION = Toast.LENGTH_LONG;
-
-        if(enteredUsername.equals(getString(R.string.example_username)) && enteredPassword.equals(getString(R.string.example_password))){
-            Toast successToast = Toast.makeText(context,"Succesful User Login!",DURATION);
-            successToast.show();
-            loginState.setBackgroundColor(getColor(R.color.cch_green));
-            loggedIn = true;
-
-            loginButton.setVisibility(View.GONE);
-            logoutButton.setVisibility(View.VISIBLE);
-
-            usernameEdit.getText().clear();
-            passwordEdit.getText().clear();
-        }
-        else {
-            Toast failToast = Toast.makeText(context,"Incorrect credentials, try again",DURATION);
-            failToast.show();
-        }
     }
 
     private void Logout() {

@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,6 +24,8 @@ public class PostActivity extends AppCompatActivity {
     public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
 
     int announcementId = -1;
+
+    DatabaseReference storedAnnouncements = FirebaseDatabase.getInstance().getReference().child("announcements");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,10 @@ public class PostActivity extends AppCompatActivity {
 
         Announcement newAnnouncement = new Announcement(currDate,currTime,title,author,content);
         Announcement.AnnouncementList.add(newAnnouncement);
+
+        announcementId = Announcement.AnnouncementList.indexOf(newAnnouncement);
+        storedAnnouncements.child("announcement"+announcementId).setValue(newAnnouncement);
+
     }
     private void SendUserToAnnouncementsActivity() {
         Intent mainIntent = new Intent(PostActivity.this, AnnouncementsActivity.class);
@@ -90,6 +99,9 @@ public class PostActivity extends AppCompatActivity {
 
         Announcement newAnnouncement = new Announcement(currDate,currTime,title,author,content);
         Announcement.AnnouncementList.set(announcementId,newAnnouncement);
+
+        storedAnnouncements.child("announcement"+announcementId).setValue(newAnnouncement);
+
         SendUserToAnnouncementsActivity();
     }
 }

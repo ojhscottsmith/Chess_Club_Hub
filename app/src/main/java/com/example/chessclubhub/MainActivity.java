@@ -1,19 +1,31 @@
 package com.example.chessclubhub;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.sql.Array;
+import java.util.*;
+
 //Controller class for the Home page
 //Defines logic for the components defined in activity_main.xml
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
 
     //Declare needed components
@@ -28,35 +40,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton loginPage;
 
     //For briefs
-    String lastAnnouncementTitle;
+//   String lastAnnouncementTitle;
     String newEvents;
 
     //For testing purposes
     final int DURATION = Toast.LENGTH_LONG;
+
+    FirebaseDatabase cchDatabase;
+
+    DatabaseReference storedGames;
+    DatabaseReference storedAnnouncements;
+    DatabaseReference storedEvents;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if(Announcement.AnnouncementList.size()==0) {
-            Announcement.AnnouncementList.add(new Announcement("04/08/2022", "17:30", "Chess in VLB", "Bruce Wayne", "Join me and some friends for Chess in VLB"));
-            Announcement.AnnouncementList.add(new Announcement("05/01/2022", "12:00", "Chess in Lesher Lounge", "Elizabeth Carol", "Chess in Lesher Lounge, be there or be square"));
-            Announcement.AnnouncementList.add(new Announcement("04/10/2022", "10:00", "South Lounge Tournament", "Sucy Timberlake", "We are having a Chess Tournament in South Lounge. Anyone is welcome!"));
-        }
-
-        if(Event.EventList.size()==0) {
-            Event.EventList.add(new Event("02/18/2023", "Standing Stone Tournament", "The monthly SSCC Tournament! Join us in the Cafe to play tournament-style chess games, in the round robin format, and get a chance to win $30 in store credit!"));
-            Event.EventList.add(new Event("03/01/2023", "Charity Chess Night", "In this month's campus tournament, along with the normal prizes given for first, second, and third, we will also give all funds from the ticket sales to UNICEF. Join the tournament for a cause!"));
-            Event.EventList.add(new Event("06/27/2023", "June Blitz", "A fun one: the Chess Alliance will be going to Pittsburgh for a USCF-sponsored tournament! Sign up here: https://rb.gy/tdmnp"));
-        }
-
-        if(Game.GameList.size()==0){
-            Game.GameList.add(new Game("10/01/1885","Opera Game", "Paris, France", "Karl II", "Paul Morphy", "1-0", "1. e4 e5 2. Nf3 d6 3. d4 Bg4 4. dxe5 Bxf3 5. Qxf3 dxe5 6. Bc4 Nf6 7. Qb3 Qe7 8. Nc3 c6 9. Bg5 b5 10. Nxb5 cxb5 11. Bxb5+ Nbd7 12. 0-0-0 Rd8 13. Rxd7 Rxd7 14. Rd1 Qe6 15. Bxd7+ Nxd7 16. Qb8+ Nxb8 17. Rd8#"));
-            Game.GameList.add(new Game("04/20/2023","Chess.com","Chess.com", "EzyFreeezy", "vinash101", "1/2-1/2", "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Qb3 Qb6 7. Qg3 Qxd4 8. Qe3 Bc5 9. Qxd4 Bxd4 10. f4 Ne7 11. Nf3 Bb6 12. Nc3 O-O 13. Na4 Nd7 14. Nxb6 Nxb6 15. Bd2 Rfd8 16. O-O-O d4 17. Bb4 Nf5 18. g4 a5 19. Bc5 Ne3 20. Rxd4 Nbc4 21. b3 Rxd4 22. Nxd4 b6 23. bxc4 bxc5 24. Nxc6 Nxg4 25. h3 Nf2 26. Rh2 Ne4 27. h4 Nc3 28. Kb2 Na4+ 29. Kb3 Nb6 30. h5 h6 31. c3 a4+ 32. Kc2 Nxc4 33. Kd3 Nb6 34. Rb2 Ra6 35. Nb8 c4+ 36. Kc2 a3 37. Rb1 Ra7 38. Rxb6 Kf8 39. Nc6 Ra8 40. Rb8+ Rxb8 41. Nxb8 Ke8 42. Nc6 Kd7 43. Na5 Ke7 44. Nxc4 f6 45. exf6+ Kxf6 46. Nxa3 g6 47. hxg6 Kxg6 48. c4 h5 49. c5 h4 50. c6 h3 51. c7 h2 52. c8=Q h1=Q 53. Qxe6+ Kg7 54. Qe7+ Kg6 55. Qe6+ Kg7 56. Qg4+ Kf7 57. Qd7+ Kg6 58. f5+ Kf6 59. Nc4 Qe4+ 60. Kb3 Qxf5 61. Qxf5+ Kxf5 62. a4 Ke6 63. a5 Kd7 64. Kb4 Kc7 65. Kb5 Kb7 66. a6+ Ka7 67. Na5 Kb8 68. Nc6+ Ka8 69. Kb6"));
-            Game.GameList.add(new Game("04/19/2023","Chess.com","Chess.com","martin-779","EzyFreeezy","1-0","1. d4 e6 2. Nf3 Nc6 3. Bf4 Bd6 4. e3 Bxf4 5. exf4 Nf6 6. Bd3 O-O 7. c3 b6 8. O-O Nh5 9. Ng5 g6 10. Nd2 Nxf4 11. Qg4 Nxd3 12. Qh4 h6 13. Qxh6 Re8 14. Qh7+ Kf8 15. Qxf7#"));
-        }
 
         //Binding components with view
         announcementBrief = findViewById(R.id.announcementBrief);
@@ -68,12 +68,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         announcementPage = findViewById(R.id.announcement_page);
         loginPage = findViewById(R.id.login_page);
 
+        cchDatabase = FirebaseDatabase.getInstance();
+
+        Announcement.AnnouncementList.clear();
+        readAnnouncementData(new DataCallback() {
+            @Override
+            public void onDataCallback(String value) {
+                announcementBrief.setText(getString(R.string.home_page_announcement_title) + "\n" + value);
+            }
+        });
+
+        Event.EventList.clear();
+        readEventsData(new DataCallback() {
+            @Override
+            public void onDataCallback(String value){
+                String[] titlesArr = value.split("\n");
+                String eventsBriefContent = getString(R.string.home_page_event_title) + "\n";
+                if(titlesArr.length>0){
+                    eventsBriefContent = eventsBriefContent.concat(titlesArr[titlesArr.length-1] + "\n");
+                    if(titlesArr.length>1) eventsBriefContent = eventsBriefContent.concat(titlesArr[titlesArr.length-2] + "\n");
+                }
+                eventsBrief.setText(eventsBriefContent);
+            }
+        });
+
+        Game.GameList.clear();
+
+        storedGames = cchDatabase.getReference().child("games");
+        ValueEventListener gamesValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String gameDate = String.valueOf(ds.child("date").getValue());
+                    String gameEventTitle = String.valueOf(ds.child("name").getValue());
+                    String gameEventSite = String.valueOf(ds.child("site").getValue());
+                    String gameBlack = String.valueOf(ds.child("black").getValue());
+                    String gameWhite = String.valueOf(ds.child("white").getValue());
+                    String gameResult = String.valueOf(ds.child("result").getValue());
+                    String gameMoves = String.valueOf(ds.child("moves").getValue());
+
+                    Game newGame = new Game(gameDate,gameEventTitle,gameEventSite,gameBlack,gameWhite,gameResult,gameMoves);
+                    Game.GameList.add(newGame);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+        storedGames.addListenerForSingleValueEvent(gamesValueListener);
+
         announcementBrief.setOnClickListener(this);
-        lastAnnouncementTitle = Announcement.AnnouncementList.get(Announcement.AnnouncementList.size()-1).getTitle();
-        announcementBrief.setText(getString(R.string.home_page_announcement_title) + "\n" + lastAnnouncementTitle);
-        newEvents = Event.EventList.get(Event.EventList.size()-1).toString() + "\n" + Event.EventList.get(Event.EventList.size()-2).toString();
         eventsBrief.setOnClickListener(this);
-        eventsBrief.setText(getString(R.string.home_page_event_title) + "\n" + newEvents);
 
         homePage.setOnClickListener(this);
         gamePage.setOnClickListener(this);
@@ -156,5 +206,73 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Toast debugger = Toast.makeText(context,displayText,DURATION);
         debugger.show();
+    }
+
+    void readAnnouncementData(DataCallback dataCallback) {
+        //Getting announcements from database
+        storedAnnouncements = cchDatabase.getReference().child("announcements");
+        ValueEventListener announcementsValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String lastAnnouncementTitle = " ";
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    String announcementDate = String.valueOf(ds.child("date").getValue());
+                    String announcementTime = String.valueOf(ds.child("time").getValue());
+                    String announcementTitle = String.valueOf(ds.child("title").getValue());
+                    String announcementAuthor = String.valueOf(ds.child("author").getValue());
+                    String announcementContent = String.valueOf(ds.child("content").getValue());
+
+                    Announcement newAnnouncement = new Announcement(announcementDate,announcementTime,announcementTitle,announcementAuthor,announcementContent);
+                    Announcement.AnnouncementList.add(newAnnouncement);
+
+                    lastAnnouncementTitle = announcementTitle;
+                }
+
+                dataCallback.onDataCallback(lastAnnouncementTitle);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+        storedAnnouncements.addListenerForSingleValueEvent(announcementsValueListener);
+    }
+
+    void readEventsData(DataCallback dataCallback){
+        //Getting announcements from database
+        storedEvents = cchDatabase.getReference().child("events");
+        ValueEventListener eventsValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String lastEventTitles = "";
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String eventDate = String.valueOf(ds.child("date").getValue());
+                    String eventTitle = String.valueOf(ds.child("title").getValue());
+                    String eventContent = String.valueOf(ds.child("content").getValue());
+
+                    Event newEvent = new Event(eventDate,eventTitle,eventContent);
+                    Event.EventList.add(newEvent);
+
+                    String currHeader = eventDate + " - " + eventTitle + "\n";
+
+                    lastEventTitles = lastEventTitles.concat(currHeader);
+                }
+
+                dataCallback.onDataCallback(lastEventTitles);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+        storedEvents.addListenerForSingleValueEvent(eventsValueListener);
     }
 }

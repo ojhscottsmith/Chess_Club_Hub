@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Event_Display extends AppCompatActivity {
 
     Button eventTitleView, eventDateView, eventContentView;
@@ -19,6 +22,8 @@ public class Event_Display extends AppCompatActivity {
     Event currEvent;
 
     int eventId;
+
+    DatabaseReference storedEvents = FirebaseDatabase.getInstance().getReference().child("events");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,7 @@ public class Event_Display extends AppCompatActivity {
 
     private void DeleteEvent() {
         Event.EventList.remove(currEvent);
+        storedEvents.child("event"+eventId).removeValue();
         SendUserToEventsActivity();
     }
 }

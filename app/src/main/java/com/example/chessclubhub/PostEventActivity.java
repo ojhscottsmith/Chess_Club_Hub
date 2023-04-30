@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +27,8 @@ public class PostEventActivity extends AppCompatActivity {
 
     Event currEvent;
     int eventId = -1;
+
+    DatabaseReference storedEvents = FirebaseDatabase.getInstance().getReference().child("events");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,10 @@ public class PostEventActivity extends AppCompatActivity {
 
         Event newEvent = new Event(eventDate, eventTitle, eventContent);
         Event.EventList.add(newEvent);
+
+        eventId = Event.EventList.indexOf(newEvent);
+        storedEvents.child("event"+eventId).setValue(newEvent);
+
     }
     private void SendUserToEventsActivity() {
         Intent mainIntent = new Intent(this, EventsActivity.class);
@@ -89,6 +98,9 @@ public class PostEventActivity extends AppCompatActivity {
         Event editedEvent = new Event(eventDate, eventTitle, eventContent);
 
         Event.EventList.set(eventId,editedEvent);
+
+        storedEvents.child("event"+eventId).setValue(editedEvent);
+
         SendUserToEventsActivity();
     }
 }

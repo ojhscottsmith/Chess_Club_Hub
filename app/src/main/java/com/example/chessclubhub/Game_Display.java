@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Game_Display extends AppCompatActivity {
 
     Button gameDateView, gameEventNameView, gameEventSiteView, gameWhiteView, gameBlackView, gameMovesTitle, gameMovesView;
@@ -29,6 +32,8 @@ public class Game_Display extends AppCompatActivity {
     public static String displayGameEvent = " ";
 
     int gameId;
+
+    DatabaseReference storedGames = FirebaseDatabase.getInstance().getReference().child("games");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +134,7 @@ public class Game_Display extends AppCompatActivity {
 
     private void DeleteGame(){
         Game.GameList.remove(currGame);
+        storedGames.child("game"+gameId).removeValue();
         SendUserToGameDetail();
     }
 

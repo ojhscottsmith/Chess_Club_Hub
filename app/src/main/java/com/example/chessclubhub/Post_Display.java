@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Post_Display extends AppCompatActivity {
     Button back;
 
@@ -17,6 +20,8 @@ public class Post_Display extends AppCompatActivity {
     Button announcementDateView,announcementTimeView,announcementTitleView,announcementAuthorView,announcementContentView;
 
     Button announcementEditButton, announcementDeleteButton;
+
+    DatabaseReference storedAnnouncements = FirebaseDatabase.getInstance().getReference().child("announcements");
 
 
     @Override
@@ -83,6 +88,7 @@ public class Post_Display extends AppCompatActivity {
 
     private void DeleteAnnouncement(){
         Announcement.AnnouncementList.remove(currAnnouncement);
+        storedAnnouncements.child("announcement"+announcementId).removeValue();
         SendUserToAnnouncementsActivity();
     }
 }
