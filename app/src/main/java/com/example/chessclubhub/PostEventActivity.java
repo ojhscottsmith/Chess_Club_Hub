@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.util.Date;
 
 public class PostEventActivity extends AppCompatActivity {
@@ -27,8 +28,9 @@ public class PostEventActivity extends AppCompatActivity {
 
     public static final String DISPLAY_EVENT = "event to display";
 
-    Event currEvent;
     int eventId = -1;
+
+    boolean fieldIsBlank;
 
     DatabaseReference storedEvents = FirebaseDatabase.getInstance().getReference().child("events");
 
@@ -76,22 +78,43 @@ public class PostEventActivity extends AppCompatActivity {
     }
 
     private void PostEvent() {
-        String eventTitle = eventTitleEdit.getText().toString();
-        String eventDate = eventDateEdit.getText().toString();
-        String eventContent = eventContentEdit.getText().toString();
-
-        Event newEvent = new Event(eventDate, eventTitle, eventContent);
-        Event.EventList.add(newEvent);
-
-        eventId = Event.EventList.indexOf(newEvent);
-        storedEvents.child("event"+eventId).setValue(newEvent);
+        fieldIsBlank = checkForBlankFields();
 
         Context context = getApplicationContext();
         int DURATION = Toast.LENGTH_LONG;
 
-        Toast successToast = Toast.makeText(context,"Event Posted!",DURATION);
-        successToast.show();
-        SendUserToEventsActivity();
+        if(fieldIsBlank){
+            Toast failToast = Toast.makeText(context,"One or more fields are blank\nTry again",DURATION);
+            failToast.show();
+        }
+
+        else {
+
+            try {
+                SimpleDateFormat eventDateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+                eventDateFormatter.setLenient(false);
+                Date stringAsDate = eventDateFormatter.parse(eventDateEdit.getText().toString());
+
+                String eventTitle = eventTitleEdit.getText().toString();
+                String eventDate = eventDateEdit.getText().toString();
+                String eventContent = eventContentEdit.getText().toString();
+
+                Event newEvent = new Event(eventDate, eventTitle, eventContent);
+                Event.EventList.add(newEvent);
+
+                eventId = Event.EventList.indexOf(newEvent);
+                storedEvents.child("event" + eventId).setValue(newEvent);
+
+                Toast successToast = Toast.makeText(context, "Event Posted!", DURATION);
+                successToast.show();
+                SendUserToEventsActivity();
+            }
+            catch(ParseException e) {
+                Toast failToast = Toast.makeText(context,"Incorrect date format\nUse MM/dd/yyyy format",DURATION);
+                failToast.show();
+            }
+
+        }
     }
     private void SendUserToEventsActivity() {
         Intent mainIntent = new Intent(this, EventsActivity.class);
@@ -99,24 +122,54 @@ public class PostEventActivity extends AppCompatActivity {
     }
 
     private void EditEvent(){
-        String eventTitle = eventTitleEdit.getText().toString();
-        String eventDate = eventDateEdit.getText().toString();
-        String eventContent = eventContentEdit.getText().toString();
-
-        Event editedEvent = new Event(eventDate, eventTitle, eventContent);
-
-        Event.EventList.set(eventId,editedEvent);
-
-        storedEvents.child("event"+eventId).setValue(editedEvent);
+        fieldIsBlank = checkForBlankFields();
 
         Context context = getApplicationContext();
         int DURATION = Toast.LENGTH_LONG;
-        Toast successToast = Toast.makeText(context,"Changes saved!",DURATION);
-        successToast.show();
 
-        Intent eventDisplayIntent = new Intent(this, Event_Display.class);
-        eventDisplayIntent.putExtra(DISPLAY_EVENT,eventId);
-        startActivity(eventDisplayIntent);
+        if(fieldIsBlank){
+            Toast failToast = Toast.makeText(context,"One or more fields are blank\nTry again",DURATION);
+            failToast.show();
+        }
 
+        else {
+
+            try {
+                SimpleDateFormat eventDateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+                eventDateFormatter.setLenient(false);
+                Date stringAsDate = eventDateFormatter.parse(eventDateEdit.getText().toString());
+
+                String eventTitle = eventTitleEdit.getText().toString();
+                String eventDate = eventDateEdit.getText().toString();
+                String eventContent = eventContentEdit.getText().toString();
+
+                Event editedEvent = new Event(eventDate, eventTitle, eventContent);
+
+                Event.EventList.set(eventId, editedEvent);
+
+                storedEvents.child("event" + eventId).setValue(editedEvent);
+
+                Toast successToast = Toast.makeText(context, "Changes saved!", DURATION);
+                successToast.show();
+
+                Intent eventDisplayIntent = new Intent(this, Event_Display.class);
+                eventDisplayIntent.putExtra(DISPLAY_EVENT, eventId);
+                startActivity(eventDisplayIntent);
+            }
+            catch(ParseException e){
+                Toast failToast = Toast.makeText(context,"Incorrect date format\nUse MM/dd/yyyy format",DURATION);
+                failToast.show();
+            }
+        }
+
+    }
+
+    boolean checkForBlankFields() {
+        EditText[] eventFields = {eventTitleEdit,eventDateEdit,eventContentEdit};
+        boolean emptyFieldFlag = false;
+        for(int i = 0; i < eventFields.length; i++){
+            if(eventFields[i].getText().toString().trim().equals("")) emptyFieldFlag = true;
+        }
+        return emptyFieldFlag;
     }
 }

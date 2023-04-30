@@ -78,27 +78,35 @@ public class LoginActivity extends AppCompatActivity {
                 loginButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String enteredUsername = usernameEdit.getText().toString();
-                        String enteredPassword = passwordEdit.getText().toString();
 
-                        Context context = getApplicationContext();
-                        final int DURATION = Toast.LENGTH_LONG;
+                        try {
+                            String enteredUsername = usernameEdit.getText().toString();
+                            String enteredPassword = passwordEdit.getText().toString();
 
-                        if(cchLogins.get(enteredUsername).equals(enteredPassword)){
-                            Toast successToast = Toast.makeText(context,"Succesful User Login!",DURATION);
-                            successToast.show();
-                            loginState.setBackgroundColor(getColor(R.color.cch_green));
-                            loggedIn = true;
+                            Context context = getApplicationContext();
+                            final int DURATION = Toast.LENGTH_LONG;
 
-                            loginButton.setVisibility(View.GONE);
-                            logoutButton.setVisibility(View.VISIBLE);
+                            if (cchLogins.get(enteredUsername).equals(enteredPassword)) {
+                                Toast successToast = Toast.makeText(context, "Successful Admin Login!", DURATION);
+                                successToast.show();
+                                loginState.setBackgroundColor(getColor(R.color.cch_green));
+                                loggedIn = true;
 
-                            usernameEdit.getText().clear();
-                            passwordEdit.getText().clear();
+                                loginButton.setVisibility(View.GONE);
+                                logoutButton.setVisibility(View.VISIBLE);
+
+                                usernameEdit.getText().clear();
+                                passwordEdit.getText().clear();
+                            } else {
+                                Toast failToast = Toast.makeText(context, "Incorrect credentials, try again", DURATION);
+                                failToast.show();
+                            }
                         }
-                        else {
-                            Toast failToast = Toast.makeText(context,"Incorrect credentials, try again",DURATION);
-                            failToast.show();
+                        catch(Exception e){
+                            Context context = getApplicationContext();
+                            int DURATION = Toast.LENGTH_LONG;
+                            Toast successToast = Toast.makeText(context,"Incorrect credentials entered, try again",DURATION);
+                            successToast.show();
                         }
                     }
                 });

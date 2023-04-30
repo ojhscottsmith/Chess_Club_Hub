@@ -135,6 +135,12 @@ public class Game_Display extends AppCompatActivity {
     private void DeleteGame(){
         Game.GameList.remove(currGame);
         storedGames.child("game"+gameId).removeValue();
+
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+        Toast deleteToast = Toast.makeText(context, "Game deleted!",DURATION);
+        deleteToast.show();
+
         SendUserToGameDetail();
     }
 

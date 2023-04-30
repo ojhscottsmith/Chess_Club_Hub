@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +32,8 @@ public class GamePostActivity extends AppCompatActivity {
     public static final String GAME_TO_DISPLAY = "individual game to display";
 
     int gameId = -1;
+
+    boolean fieldIsBlank;
 
     DatabaseReference storedGames = FirebaseDatabase.getInstance().getReference().child("games");
 
@@ -121,26 +124,47 @@ public class GamePostActivity extends AppCompatActivity {
     }
 
     private void postGameEvent() {
-        String gameDate = game_date_edit.getText().toString();
-        String gameName = game_name_edit.getText().toString();
-        String gameSite = game_site_edit.getText().toString();
-        String gameWhite = game_white_edit.getText().toString();
-        String gameBlack = game_black_edit.getText().toString();
-        String gameResult = game_result_edit.getText().toString();
-        String gameMoves = game_moves_edit.getText().toString();
-
-        Game newGame = new Game(gameDate,gameName,gameSite,gameBlack,gameWhite,gameResult,gameMoves);
-        Game.GameList.add(newGame);
-
-        gameId = Game.GameList.indexOf(newGame);
-        storedGames.child("game"+gameId).setValue(newGame);
 
         Context context = getApplicationContext();
         int DURATION = Toast.LENGTH_LONG;
-        Toast successToast = Toast.makeText(context,"Game posted!",DURATION);
-        successToast.show();
+        fieldIsBlank = checkForBlankFields();
 
-        SendUserToGameLog();
+        if(fieldIsBlank){
+            Toast failToast = Toast.makeText(context,"One or more fields are blank\nTry again",DURATION);
+            failToast.show();
+        }
+
+        else {
+
+            try {
+                SimpleDateFormat gameDateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+                gameDateFormatter.setLenient(false);
+                Date stringAsDate = gameDateFormatter.parse(game_date_edit.getText().toString());
+
+                String gameDate = game_date_edit.getText().toString();
+                String gameName = game_name_edit.getText().toString();
+                String gameSite = game_site_edit.getText().toString();
+                String gameWhite = game_white_edit.getText().toString();
+                String gameBlack = game_black_edit.getText().toString();
+                String gameResult = game_result_edit.getText().toString();
+                String gameMoves = game_moves_edit.getText().toString();
+
+                Game newGame = new Game(gameDate, gameName, gameSite, gameBlack, gameWhite, gameResult, gameMoves);
+                Game.GameList.add(newGame);
+
+                gameId = Game.GameList.indexOf(newGame);
+                storedGames.child("game" + gameId).setValue(newGame);
+
+                Toast successToast = Toast.makeText(context, "Game posted!", DURATION);
+                successToast.show();
+
+                SendUserToGameLog();
+
+            } catch(ParseException e){
+                Toast failToast = Toast.makeText(context,"Incorrect date format\nUse MM/dd/yyyy format",DURATION);
+                failToast.show();
+            }
+        }
     }
 
     private void SendUserToGameLog() {
@@ -179,24 +203,55 @@ public class GamePostActivity extends AppCompatActivity {
     }
 
     private void SaveChanges(){
-        String gameDate = game_date_edit.getText().toString();
-        String gameName = game_name_edit.getText().toString();
-        String gameSite = game_site_edit.getText().toString();
-        String gameWhite = game_white_edit.getText().toString();
-        String gameBlack = game_black_edit.getText().toString();
-        String gameResult = game_result_edit.getText().toString();
-        String gameMoves = game_moves_edit.getText().toString();
 
-        Game newGame = new Game(gameDate,gameName,gameSite,gameBlack,gameWhite,gameResult,gameMoves);
-        Game.GameList.set(gameId, newGame);
-
-        storedGames.child("game"+gameId).setValue(newGame);
+        fieldIsBlank = checkForBlankFields();
 
         Context context = getApplicationContext();
         int DURATION = Toast.LENGTH_LONG;
-        Toast successToast = Toast.makeText(context,"Changes saved!",DURATION);
-        successToast.show();
 
-        SendUserBackToGame();
+        if(fieldIsBlank){
+            Toast failToast = Toast.makeText(context,"One or more fields are blank\nTry again",DURATION);
+            failToast.show();
+        }
+
+        else {
+
+            try {
+                SimpleDateFormat gameDateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+                gameDateFormatter.setLenient(false);
+                Date stringAsDate = gameDateFormatter.parse(game_date_edit.getText().toString());
+
+                String gameDate = game_date_edit.getText().toString();
+                String gameName = game_name_edit.getText().toString();
+                String gameSite = game_site_edit.getText().toString();
+                String gameWhite = game_white_edit.getText().toString();
+                String gameBlack = game_black_edit.getText().toString();
+                String gameResult = game_result_edit.getText().toString();
+                String gameMoves = game_moves_edit.getText().toString();
+
+                Game newGame = new Game(gameDate, gameName, gameSite, gameBlack, gameWhite, gameResult, gameMoves);
+                Game.GameList.set(gameId, newGame);
+
+                storedGames.child("game" + gameId).setValue(newGame);
+
+                Toast successToast = Toast.makeText(context, "Changes saved!", DURATION);
+                successToast.show();
+
+                SendUserBackToGame();
+            }
+            catch(ParseException e){
+                Toast failToast = Toast.makeText(context,"Incorrect date format\nUse MM/dd/yyyy format",DURATION);
+                failToast.show();
+            }
+        }
+    }
+
+    boolean checkForBlankFields() {
+        EditText[] gameFields = {game_date_edit, game_name_edit, game_site_edit, game_white_edit, game_black_edit, game_result_edit, game_moves_edit};
+        boolean emptyFieldFlag = false;
+        for(int i = 0; i < gameFields.length; i++){
+            if(gameFields[i].getText().toString().trim().equals("")) emptyFieldFlag = true;
+        }
+        return emptyFieldFlag;
     }
 }

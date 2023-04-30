@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,6 +29,8 @@ public class PostActivity extends AppCompatActivity {
     public static final String DISPLAY_ANNOUNCEMENT = "announcement to display";
 
     int announcementId = -1;
+
+    boolean fieldIsBlank;
 
     DatabaseReference storedAnnouncements = FirebaseDatabase.getInstance().getReference().child("announcements");
 
@@ -100,25 +103,44 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void SaveChanges(){
-        Announcement currAnnouncement = Announcement.AnnouncementList.get(announcementId);
-        String currDate = currAnnouncement.getDate();
-        String currTime = currAnnouncement.getTime();
-        String title = announcement_title_edit.getText().toString();
-        String author = announcement_author_edit.getText().toString();
-        String content = announcement_content_edit.getText().toString();
-
-        Announcement newAnnouncement = new Announcement(currDate,currTime,title,author,content);
-        Announcement.AnnouncementList.set(announcementId,newAnnouncement);
-
-        storedAnnouncements.child("announcement"+announcementId).setValue(newAnnouncement);
-
+        fieldIsBlank = checkForBlankFields();
         Context context = getApplicationContext();
         int DURATION = Toast.LENGTH_LONG;
-        Toast successToast = Toast.makeText(context,"Changes saved!",DURATION);
-        successToast.show();
 
-        Intent announcementDisplayIntent = new Intent(this, Post_Display.class);
-        announcementDisplayIntent.putExtra(DISPLAY_ANNOUNCEMENT,announcementId);
-        startActivity(announcementDisplayIntent);
+        if(fieldIsBlank){
+            Toast failToast = Toast.makeText(context,"One or more fields are blank\nTry again",DURATION);
+            failToast.show();
+        }
+
+        else {
+
+                Announcement currAnnouncement = Announcement.AnnouncementList.get(announcementId);
+                String currDate = currAnnouncement.getDate();
+                String currTime = currAnnouncement.getTime();
+                String title = announcement_title_edit.getText().toString();
+                String author = announcement_author_edit.getText().toString();
+                String content = announcement_content_edit.getText().toString();
+
+                Announcement newAnnouncement = new Announcement(currDate, currTime, title, author, content);
+                Announcement.AnnouncementList.set(announcementId, newAnnouncement);
+
+                storedAnnouncements.child("announcement" + announcementId).setValue(newAnnouncement);
+
+                Toast successToast = Toast.makeText(context, "Changes saved!", DURATION);
+                successToast.show();
+
+                Intent announcementDisplayIntent = new Intent(this, Post_Display.class);
+                announcementDisplayIntent.putExtra(DISPLAY_ANNOUNCEMENT, announcementId);
+                startActivity(announcementDisplayIntent);
+        }
+    }
+
+    boolean checkForBlankFields() {
+        EditText[] announcementFields = {announcement_title_edit, announcement_author_edit, announcement_content_edit};
+        boolean emptyFieldFlag = false;
+        for(int i = 0; i < announcementFields.length; i++){
+            if(announcementFields[i].getText().toString().trim().equals("")) emptyFieldFlag = true;
+        }
+        return emptyFieldFlag;
     }
 }

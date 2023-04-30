@@ -2,10 +2,12 @@ package com.example.chessclubhub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -83,6 +85,12 @@ public class Event_Display extends AppCompatActivity {
     private void DeleteEvent() {
         Event.EventList.remove(currEvent);
         storedEvents.child("event"+eventId).removeValue();
+
+        Context context = getApplicationContext();
+        int DURATION = Toast.LENGTH_LONG;
+        Toast deleteToast = Toast.makeText(context, "Event deleted!",DURATION);
+        deleteToast.show();
+
         SendUserToEventsActivity();
     }
 }
