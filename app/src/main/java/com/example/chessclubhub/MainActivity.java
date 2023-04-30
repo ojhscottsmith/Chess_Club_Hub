@@ -163,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Redirect to the newest announcement
                 Intent announcementBriefIntent = new Intent(MainActivity.this,Post_Display.class);
                 announcementBriefIntent.putExtra(DISPLAY_ANNOUNCEMENT,Announcement.AnnouncementList.size()-1);
-                componentCalled("Redirects to most recent announcement");
                 startActivity(announcementBriefIntent);
                 break;
 
@@ -171,31 +170,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //redirect to the events list
                 Intent eventBriefIntent = new Intent(this, EventsActivity.class);
                 startActivity(eventBriefIntent);
-                componentCalled("Redirects to events list");
                 break;
 
             case R.id.home_page:
-                componentCalled("Redirects to home page");
                 break;
 
             case R.id.game_page:
                 SendUserToGameActivity();
-                componentCalled("Redirects to game page");
                 break;
 
             case R.id.event_page:
-                componentCalled("Redirects to events page");
                 SendUserToEventsActivity();
                 break;
 
             case R.id.announcement_page:
                 SendUserToAnnouncementsActivity();
-                componentCalled("Redirects to announcements page");
                 break;
 
             case R.id.login_page:
                 SendUserToLoginActivity();
-                componentCalled("Redirects to admin login page");
                 break;
         }
     }
